@@ -124,50 +124,6 @@
     });
   });
 
-  const motionElements = Array.from(document.querySelectorAll('[data-motion]'));
-  let motionObserver = null;
-  const setupMotion = () => {
-    if (!motionElements.length) {
-      return;
-    }
-    if (motionObserver) {
-      motionObserver.disconnect();
-      motionObserver = null;
-    }
-    motionElements.forEach((element) => {
-      element.classList.add('motion-ready');
-      const delay = element.getAttribute('data-motion-delay');
-      if (delay) {
-        element.style.setProperty('--motion-delay', delay);
-      }
-      if (prefersReducedMotion) {
-        element.classList.add('is-visible');
-      } else if (element.getAttribute('data-motion-repeat') !== 'true') {
-        element.classList.remove('is-visible');
-      }
-    });
-    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-      motionElements.forEach((element) => element.classList.add('is-visible'));
-      return;
-    }
-    motionObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          if (entry.target.getAttribute('data-motion-repeat') !== 'true') {
-            motionObserver?.unobserve(entry.target);
-          }
-        } else if (entry.target.getAttribute('data-motion-repeat') === 'true') {
-          entry.target.classList.remove('is-visible');
-        }
-      });
-    }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
-    motionElements.forEach((element) => motionObserver?.observe(element));
-  };
-
-  setupMotion();
-  motionAwareControllers.push({ sync: setupMotion });
-
   const heroSlider = document.querySelector('[data-hero-slider]');
   if (heroSlider) {
     const slides = Array.from(heroSlider.querySelectorAll('[data-hero-slide]'));
