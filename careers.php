@@ -6,7 +6,7 @@ require_once __DIR__ . '/includes/mailer.php';
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
-  require_once __DIR__ . '/includes/mailer.php';
+ 
 
   // Get and sanitize form inputs
   $name = trim($_POST['fullname'] ?? '');
