@@ -14,7 +14,7 @@ function lm_sanitize($value) {
 }
 
 function lm_send_dual_mail($formType, $userEmail, $userName, $fields) {
-  global $LM_BRAND, $LM_ADMIN_EMAIL, $LM_FROM_EMAIL;
+  global $LM_BRAND, $LM_ADMIN_EMAIL, $LM_FROM_EMAIL, $LM_SMTP_SETTINGS;
 
   if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
     return ['ok' => false, 'error' => 'Invalid email address'];
