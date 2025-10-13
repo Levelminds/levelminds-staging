@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
         </div>
       </div>
       <div class="product-frame product-frame--hero">
-        <img src="assets/img/careers-hero.png" alt="LevelMinds ambassadors collaborating in a modern workspace">
+        <img src="assets/img/careers1.png" alt="LevelMinds ambassadors collaborating in a modern workspace">
       </div>
     </div>
   </section>
