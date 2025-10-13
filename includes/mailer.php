@@ -48,20 +48,12 @@ function lm_send_dual_mail($formType, $userEmail, $userName, $fields) {
 
     // === SMTP CONFIGURATION ===
     $mail->isSMTP();
-    $mail->Host       = $LM_SMTP_SETTINGS['host'] ?? 'localhost';
-    $mail->SMTPAuth   = (bool)($LM_SMTP_SETTINGS['auth'] ?? false);
-    $mail->Username   = $LM_SMTP_SETTINGS['username'] ?? '';
-    $mail->Password   = $LM_SMTP_SETTINGS['password'] ?? '';
-
-    $secure = strtolower((string)($LM_SMTP_SETTINGS['secure'] ?? ''));
-    if ($secure === 'tls') {
-      $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    } else {
-      // Default to SSL if value is "ssl" or not provided.
-      $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-    }
-
-    $mail->Port       = (int)($LM_SMTP_SETTINGS['port'] ?? 465);
+    $mail->Host       = 'smtp.hostinger.com';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = 'staging@levelminds.in';     // your email
+    $mail->Password   = 'Levelminds@2024';  // <-- replace this
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // SSL
+    $mail->Port       = 465;
 
     // === USER EMAIL ===
     $mail->setFrom($LM_FROM_EMAIL, $LM_BRAND);

@@ -68,39 +68,7 @@
   const header = document.querySelector('.site-header');
   const toggle = document.querySelector('.nav__toggle');
   const menu = document.querySelector('#site-nav');
-  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let prefersReducedMotion = motionQuery.matches;
-  const supportsIntersectionObserver = 'IntersectionObserver' in window;
-  const motionAwareControllers = [];
-  let revealAnimatedElements = null;
-
-  const syncHeaderState = () => {
-    if (!header) {
-      return;
-    }
-    const shouldCondense = window.scrollY > 12;
-    header.classList.toggle('is-scrolled', shouldCondense);
-  };
-
-  const handleMotionPreferenceChange = (event) => {
-    prefersReducedMotion = event.matches;
-    if (prefersReducedMotion && typeof revealAnimatedElements === 'function') {
-      revealAnimatedElements();
-    }
-    motionAwareControllers.forEach((controller) => controller.sync());
-  };
-
-  if (typeof motionQuery.addEventListener === 'function') {
-    motionQuery.addEventListener('change', handleMotionPreferenceChange);
-  } else if (typeof motionQuery.addListener === 'function') {
-    motionQuery.addListener(handleMotionPreferenceChange);
-  }
-
-  if (header) {
-    syncHeaderState();
-    window.addEventListener('scroll', syncHeaderState, { passive: true });
-  }
-
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (header && toggle && menu) {
     const body = document.body;
     const closeMenu = () => {
@@ -145,14 +113,11 @@
 
   const animatedElements = Array.from(document.querySelectorAll('[data-animate]'));
   if (animatedElements.length) {
-    revealAnimatedElements = () => {
+    if (prefersReducedMotion) {
       animatedElements.forEach((el) => {
         el.classList.add('is-visible');
         el.style.removeProperty('transition-delay');
       });
-    };
-    if (prefersReducedMotion || !supportsIntersectionObserver) {
-      revealAnimatedElements();
     } else {
       const observer = new IntersectionObserver(
         (entries) => {
@@ -223,108 +188,6 @@
       });
     }
   }
-
-  document.querySelectorAll('[data-hero-slider]').forEach((slider, sliderIndex) => {
-    const slides = Array.from(slider.querySelectorAll('[data-hero-slide]'));
-    if (slides.length === 0) {
-      return;
-    }
-    const dotsHost = slider.querySelector('.hero__slider-dots');
-    const sliderId = slider.id || `hero-slider-${sliderIndex + 1}`;
-    if (!slider.id) {
-      slider.id = sliderId;
-    }
-    const dots = [];
-    let index = 0;
-    let timer = null;
-
-    slides.forEach((slide, slideIndex) => {
-      if (!slide.id) {
-        slide.id = `${sliderId}-slide-${slideIndex + 1}`;
-      }
-      slide.setAttribute('role', 'group');
-    });
-
-    const applyActiveState = () => {
-      slides.forEach((slide, slideIndex) => {
-        const isActive = slideIndex === index;
-        slide.classList.toggle('is-active', isActive);
-        slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
-      });
-      dots.forEach((dot, dotIndex) => {
-        const isActive = dotIndex === index;
-        dot.classList.toggle('is-active', isActive);
-        dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      });
-    };
-
-    const goTo = (target) => {
-      index = ((target % slides.length) + slides.length) % slides.length;
-      applyActiveState();
-    };
-
-    const stopAuto = () => {
-      if (timer) {
-        window.clearInterval(timer);
-        timer = null;
-      }
-    };
-
-    const startAuto = () => {
-      if (prefersReducedMotion || slides.length <= 1) {
-        stopAuto();
-        return;
-      }
-      stopAuto();
-      timer = window.setInterval(() => {
-        goTo(index + 1);
-      }, 4800);
-    };
-
-    const syncAutoplay = () => {
-      if (
-        prefersReducedMotion ||
-        slides.length <= 1 ||
-        slider.matches(':hover') ||
-        slider.matches(':focus-within')
-      ) {
-        stopAuto();
-        return;
-      }
-      startAuto();
-    };
-
-    if (dotsHost) {
-      dotsHost.innerHTML = '';
-      slides.forEach((slide, slideIndex) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'hero__slider-dot';
-        dot.setAttribute('role', 'tab');
-        dot.setAttribute('aria-controls', slide.id);
-        dot.setAttribute('aria-label', `Go to hero slide ${slideIndex + 1}`);
-        dot.addEventListener('click', () => {
-          stopAuto();
-          goTo(slideIndex);
-          syncAutoplay();
-        });
-        dot.addEventListener('focusin', stopAuto);
-        dotsHost.appendChild(dot);
-        dots.push(dot);
-      });
-    }
-
-    slider.addEventListener('mouseenter', stopAuto);
-    slider.addEventListener('mouseleave', syncAutoplay);
-    slider.addEventListener('focusin', stopAuto);
-    slider.addEventListener('focusout', syncAutoplay);
-    slider.addEventListener('touchstart', stopAuto, { passive: true });
-    slider.addEventListener('touchend', syncAutoplay, { passive: true });
-
-    goTo(0);
-    motionAwareControllers.push({ sync: syncAutoplay });
-    syncAutoplay();
-  });
 
   document.querySelectorAll('[data-slider]').forEach((slider) => {
     const track = slider.querySelector('.product-slider__track');
