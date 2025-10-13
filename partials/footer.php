@@ -1,4 +1,8 @@
 <footer class="site-footer">
+  <div class="footer__backdrop" aria-hidden="true">
+    <span class="footer__glow footer__glow--left"></span>
+    <span class="footer__glow footer__glow--right"></span>
+  </div>
   <div class="container footer-grid">
     <div class="footer-brand">
       <a class="footer-logo" href="index.php">
@@ -20,9 +24,24 @@
     <div>
       <h4>Contact</h4>
       <ul class="footer-links">
-        <li>Delhi, India</li>
-        <li><a href="mailto:support@levelminds.in">support@levelminds.in</a></li>
-        <li><a href="tel:+917303835892">+91 73038 35892</a></li>
+        <li class="footer-links__item">
+          <svg class="icon icon--pin" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 2.75a7.25 7.25 0 0 0-7.25 7.25c0 2.83 1.63 5.53 4.09 8.37a40.35 40.35 0 0 0 2.63 2.75.75.75 0 0 0 1.06 0 40.35 40.35 0 0 0 2.63-2.75c2.46-2.84 4.09-5.54 4.09-8.37A7.25 7.25 0 0 0 12 2.75Zm0 10.25a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" fill="currentColor" />
+          </svg>
+          <span>Delhi, India</span>
+        </li>
+        <li class="footer-links__item">
+          <svg class="icon icon--mail" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4.25 5.5h15.5A1.25 1.25 0 0 1 21 6.75v10.5A1.75 1.75 0 0 1 19.25 19H4.75A1.75 1.75 0 0 1 3 17.25V6.75A1.25 1.25 0 0 1 4.25 5.5Zm.25 2v9.75c0 .14.11.25.25.25h14.5a.25.25 0 0 0 .25-.25V7.5l-7.2 4.5a.75.75 0 0 1-.8 0L4.5 7.5Zm14.27-1.5H5.48l6.04 3.78L18.77 6Z" fill="currentColor" />
+          </svg>
+          <a href="mailto:support@levelminds.in">support@levelminds.in</a>
+        </li>
+        <li class="footer-links__item">
+          <svg class="icon icon--phone" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M8.72 3.32 6.9 5.69a2 2 0 0 0-.2 2.15l.7 1.39a2 2 0 0 1-.22 2.1l-.7.93a1.5 1.5 0 0 0 0 1.82 14.6 14.6 0 0 0 5.63 5.63 1.5 1.5 0 0 0 1.82 0l.93-.7a2 2 0 0 1 2.1-.22l1.39.7a2 2 0 0 0 2.15-.2l2.37-1.82a1 1 0 0 0 .12-1.47l-3.4-3.4a1 1 0 0 0-1.18-.18l-2.16 1.08a2 2 0 0 1-2.16-.27l-3.26-3.26a2 2 0 0 1-.27-2.16l1.08-2.16a1 1 0 0 0-.18-1.18l-3.4-3.4a1 1 0 0 0-1.47.12Z" fill="currentColor" />
+          </svg>
+          <a href="tel:+917303835892">+91 73038 35892</a>
+        </li>
       </ul>
     </div>
     <div>
@@ -49,6 +68,39 @@
   const header = document.querySelector('.site-header');
   const toggle = document.querySelector('.nav__toggle');
   const menu = document.querySelector('#site-nav');
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let prefersReducedMotion = motionQuery.matches;
+  const supportsIntersectionObserver = 'IntersectionObserver' in window;
+  const motionAwareControllers = [];
+  let revealAnimatedElements = null;
+
+  const syncHeaderState = () => {
+    if (!header) {
+      return;
+    }
+    const shouldCondense = window.scrollY > 12;
+    header.classList.toggle('is-scrolled', shouldCondense);
+  };
+
+  const handleMotionPreferenceChange = (event) => {
+    prefersReducedMotion = event.matches;
+    if (prefersReducedMotion && typeof revealAnimatedElements === 'function') {
+      revealAnimatedElements();
+    }
+    motionAwareControllers.forEach((controller) => controller.sync());
+  };
+
+  if (typeof motionQuery.addEventListener === 'function') {
+    motionQuery.addEventListener('change', handleMotionPreferenceChange);
+  } else if (typeof motionQuery.addListener === 'function') {
+    motionQuery.addListener(handleMotionPreferenceChange);
+  }
+
+  if (header) {
+    syncHeaderState();
+    window.addEventListener('scroll', syncHeaderState, { passive: true });
+  }
+
   if (header && toggle && menu) {
     const body = document.body;
     const closeMenu = () => {
@@ -91,6 +143,189 @@
     });
   });
 
+  const animatedElements = Array.from(document.querySelectorAll('[data-animate]'));
+  if (animatedElements.length) {
+    revealAnimatedElements = () => {
+      animatedElements.forEach((el) => {
+        el.classList.add('is-visible');
+        el.style.removeProperty('transition-delay');
+      });
+    };
+    if (prefersReducedMotion || !supportsIntersectionObserver) {
+      revealAnimatedElements();
+    } else {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.28, rootMargin: '0px 0px -12%' }
+      );
+      animatedElements.forEach((el, index) => {
+        const delayAttr = el.getAttribute('data-animate-delay');
+        const delay = delayAttr !== null ? Number(delayAttr) : Math.min(index * 70, 420);
+        if (!Number.isNaN(delay)) {
+          el.style.transitionDelay = `${delay}ms`;
+        }
+        observer.observe(el);
+      });
+    }
+  }
+
+  const tiltElements = Array.from(document.querySelectorAll('[data-tilt]'));
+  if (tiltElements.length) {
+    const resetTilt = (el) => {
+      el.style.setProperty('--tilt-x', '0deg');
+      el.style.setProperty('--tilt-y', '0deg');
+      el.style.setProperty('--tilt-translate', '0px');
+      el.style.setProperty('--tilt-scale', '1');
+      el.classList.remove('is-hovered');
+    };
+    if (prefersReducedMotion) {
+      tiltElements.forEach((el) => resetTilt(el));
+    } else {
+      tiltElements.forEach((el) => {
+        const maxTilt = Number(el.getAttribute('data-tilt-max') || '10');
+        const handlePointerMove = (event) => {
+          if (typeof event.isPrimary === 'boolean' && !event.isPrimary) {
+            return;
+          }
+          const rect = el.getBoundingClientRect();
+          if (!rect.width || !rect.height) {
+            return;
+          }
+          const x = (event.clientX - rect.left) / rect.width;
+          const y = (event.clientY - rect.top) / rect.height;
+          const tiltX = ((x - 0.5) * maxTilt * 2).toFixed(2);
+          const tiltY = ((0.5 - y) * maxTilt * 2).toFixed(2);
+          el.style.setProperty('--tilt-x', `${tiltX}deg`);
+          el.style.setProperty('--tilt-y', `${tiltY}deg`);
+        };
+        const handlePointerLeave = () => {
+          resetTilt(el);
+          el.removeEventListener('pointermove', handlePointerMove);
+        };
+        el.addEventListener('pointerenter', (event) => {
+          if (typeof event.isPrimary === 'boolean' && !event.isPrimary) {
+            return;
+          }
+          el.classList.add('is-hovered');
+          handlePointerMove(event);
+          el.addEventListener('pointermove', handlePointerMove);
+        });
+        el.addEventListener('pointerleave', handlePointerLeave);
+        el.addEventListener('pointercancel', handlePointerLeave);
+        el.addEventListener('blur', () => resetTilt(el));
+      });
+    }
+  }
+
+  document.querySelectorAll('[data-hero-slider]').forEach((slider, sliderIndex) => {
+    const slides = Array.from(slider.querySelectorAll('[data-hero-slide]'));
+    if (slides.length === 0) {
+      return;
+    }
+    const dotsHost = slider.querySelector('.hero__slider-dots');
+    const sliderId = slider.id || `hero-slider-${sliderIndex + 1}`;
+    if (!slider.id) {
+      slider.id = sliderId;
+    }
+    const dots = [];
+    let index = 0;
+    let timer = null;
+
+    slides.forEach((slide, slideIndex) => {
+      if (!slide.id) {
+        slide.id = `${sliderId}-slide-${slideIndex + 1}`;
+      }
+      slide.setAttribute('role', 'group');
+    });
+
+    const applyActiveState = () => {
+      slides.forEach((slide, slideIndex) => {
+        const isActive = slideIndex === index;
+        slide.classList.toggle('is-active', isActive);
+        slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+      });
+      dots.forEach((dot, dotIndex) => {
+        const isActive = dotIndex === index;
+        dot.classList.toggle('is-active', isActive);
+        dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+    };
+
+    const goTo = (target) => {
+      index = ((target % slides.length) + slides.length) % slides.length;
+      applyActiveState();
+    };
+
+    const stopAuto = () => {
+      if (timer) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+    };
+
+    const startAuto = () => {
+      if (prefersReducedMotion || slides.length <= 1) {
+        stopAuto();
+        return;
+      }
+      stopAuto();
+      timer = window.setInterval(() => {
+        goTo(index + 1);
+      }, 4800);
+    };
+
+    const syncAutoplay = () => {
+      if (
+        prefersReducedMotion ||
+        slides.length <= 1 ||
+        slider.matches(':hover') ||
+        slider.matches(':focus-within')
+      ) {
+        stopAuto();
+        return;
+      }
+      startAuto();
+    };
+
+    if (dotsHost) {
+      dotsHost.innerHTML = '';
+      slides.forEach((slide, slideIndex) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'hero__slider-dot';
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-controls', slide.id);
+        dot.setAttribute('aria-label', `Go to hero slide ${slideIndex + 1}`);
+        dot.addEventListener('click', () => {
+          stopAuto();
+          goTo(slideIndex);
+          syncAutoplay();
+        });
+        dot.addEventListener('focusin', stopAuto);
+        dotsHost.appendChild(dot);
+        dots.push(dot);
+      });
+    }
+
+    slider.addEventListener('mouseenter', stopAuto);
+    slider.addEventListener('mouseleave', syncAutoplay);
+    slider.addEventListener('focusin', stopAuto);
+    slider.addEventListener('focusout', syncAutoplay);
+    slider.addEventListener('touchstart', stopAuto, { passive: true });
+    slider.addEventListener('touchend', syncAutoplay, { passive: true });
+
+    goTo(0);
+    motionAwareControllers.push({ sync: syncAutoplay });
+    syncAutoplay();
+  });
+
   document.querySelectorAll('[data-slider]').forEach((slider) => {
     const track = slider.querySelector('.product-slider__track');
     const slides = Array.from(slider.querySelectorAll('.product-slide'));
@@ -107,7 +342,6 @@
       return;
     }
     slider.classList.remove('is-static');
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let index = 0;
     let timer = null;
     const update = () => {
@@ -190,6 +424,15 @@
     slider.addEventListener('mouseleave', maybeResumeAuto);
     slider.addEventListener('focusin', stopAuto);
     slider.addEventListener('focusout', maybeResumeAuto);
+    motionAwareControllers.push({
+      sync: () => {
+        if (prefersReducedMotion) {
+          stopAuto();
+        } else {
+          maybeResumeAuto();
+        }
+      }
+    });
     update();
     startAuto();
   });
