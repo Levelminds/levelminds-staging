@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_contact'])) {
         </div>
         <div class="card card--outline">
           <h3>Press and partnerships</h3>
-          <p>Write to <a href="mailto:partners@levelminds.in">partners@levelminds.in</a> for media, events, or collaboration opportunities.</p>
+          <p>Write to <a href="mailto:support@levelminds.in">support@levelminds.in</a> for media, events, or collaboration opportunities.</p>
         </div>
       </aside>
     </div>
