@@ -287,6 +287,15 @@
     slider.addEventListener('mouseleave', maybeResumeAuto);
     slider.addEventListener('focusin', stopAuto);
     slider.addEventListener('focusout', maybeResumeAuto);
+    motionAwareControllers.push({
+      sync: () => {
+        if (prefersReducedMotion) {
+          stopAuto();
+        } else {
+          maybeResumeAuto();
+        }
+      }
+    });
     update();
     startAuto();
   });

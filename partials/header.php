@@ -10,7 +10,7 @@ if (!isset($pageTitle)) { $pageTitle = "LevelMinds"; }
   <meta name="description" content="LevelMinds is a skill-first hiring platform connecting schools and teachers with transparent workflows and digital profiles." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
 </head>
