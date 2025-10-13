@@ -180,17 +180,15 @@ section {
 
 [data-animate] {
   opacity: 0;
-  transform: translateY(32px) scale(0.94);
-  filter: blur(16px);
+  transform: translateY(28px) scale(0.98);
+  filter: blur(14px);
   transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.7s ease;
-  will-change: transform, opacity, filter;
 }
 
 [data-animate].is-visible {
   opacity: 1;
   transform: translateY(0) scale(1);
   filter: blur(0);
-  animation: revealLift 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 [data-animate="flip"].is-visible {
@@ -232,7 +230,6 @@ section {
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;
-    animation: none !important;
   }
 
   [data-tilt] {
@@ -304,13 +301,6 @@ section {
   width: 1.2rem;
   height: 1.2rem;
   color: inherit;
-}
-
-.icon-figure {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
 }
 
 .icon svg,
@@ -475,9 +465,9 @@ section {
 }
 
 .step-icon {
-  width: 44px;
+  width: 56px;
   aspect-ratio: 1;
-  border-radius: 18px;
+  border-radius: 20px;
   background: linear-gradient(140deg, rgba(50, 72, 173, 0.95), rgba(63, 151, 213, 0.78));
   display: grid;
   place-items: center;
@@ -487,7 +477,6 @@ section {
   isolation: isolate;
   grid-row: span 2;
   animation: floatOrbs 16s ease-in-out infinite;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .step-icon::after {
@@ -499,14 +488,9 @@ section {
   z-index: -1;
 }
 
-.step-icon .icon-figure {
-  width: 1.35rem;
-  height: 1.35rem;
-}
-
-.list-steps li:hover .step-icon {
-  transform: translateY(-4px) scale(1.04);
-  box-shadow: 0 18px 44px -24px rgba(13, 20, 36, 0.5);
+.step-icon svg {
+  width: 1.6rem;
+  height: 1.6rem;
 }
 
 .card {
@@ -571,9 +555,9 @@ section {
 }
 
 .card__icon {
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 14px;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 16px;
   background: linear-gradient(135deg, rgba(50, 72, 173, 0.16), rgba(63, 151, 213, 0.32));
   display: inline-flex;
   align-items: center;
@@ -581,17 +565,11 @@ section {
   color: var(--brand-700);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
   z-index: 1;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.card__icon .icon-figure {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.card--feature:hover .card__icon {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 12px 32px -20px rgba(13, 20, 36, 0.35);
+.card__icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .card--raised {
@@ -673,9 +651,9 @@ section {
 }
 
 .metric__icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 12px;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 14px;
   background: rgba(50, 72, 173, 0.12);
   display: inline-flex;
   align-items: center;
@@ -684,9 +662,9 @@ section {
   transition: transform 0.4s ease;
 }
 
-.metric__icon .icon-figure {
-  width: 1.1rem;
-  height: 1.1rem;
+.metric__icon svg {
+  width: 1.15rem;
+  height: 1.15rem;
 }
 
 .metric:hover .metric__icon {

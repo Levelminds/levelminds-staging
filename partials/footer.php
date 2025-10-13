@@ -68,9 +68,7 @@
   const header = document.querySelector('.site-header');
   const toggle = document.querySelector('.nav__toggle');
   const menu = document.querySelector('#site-nav');
-  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const prefersReducedMotion = motionQuery.matches;
-  const supportsIntersectionObserver = 'IntersectionObserver' in window;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (header && toggle && menu) {
     const body = document.body;
     const closeMenu = () => {
@@ -115,14 +113,11 @@
 
   const animatedElements = Array.from(document.querySelectorAll('[data-animate]'));
   if (animatedElements.length) {
-    const revealImmediately = () => {
+    if (prefersReducedMotion) {
       animatedElements.forEach((el) => {
         el.classList.add('is-visible');
         el.style.removeProperty('transition-delay');
       });
-    };
-    if (prefersReducedMotion || !supportsIntersectionObserver) {
-      revealImmediately();
     } else {
       const observer = new IntersectionObserver(
         (entries) => {

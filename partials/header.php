@@ -41,9 +41,9 @@ if (!isset($pageTitle)) { $pageTitle = "LevelMinds"; }
       </nav>
       <div class="nav__actions">
         <a class="btn btn-primary" href="https://lmap.in/login">
-          <span class="icon icon--spark" aria-hidden="true">
-            <img class="icon-figure" src="assets/img/icons/icon-user-circle.svg" alt="">
-          </span>
+          <svg class="icon icon--spark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 3.25 13.62 8l4.88 1.12L14.5 12l.74 5-3.24-2.62L8.76 17l.74-5-3.99-2.88L10.5 8 12 3.25Z" fill="currentColor"/>
+          </svg>
           <span>Login / Sign Up</span>
         </a>
       </div>
