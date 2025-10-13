@@ -1674,6 +1674,21 @@ textarea {
   transform: translateY(-7px) rotate(-45deg);
 }
 
+@keyframes revealLift {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 32px, 0) scale(0.94);
+  }
+  55% {
+    opacity: 1;
+    transform: translate3d(0, -6px, 0) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;
