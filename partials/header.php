@@ -15,6 +15,9 @@ if (!isset($pageTitle)) { $pageTitle = "LevelMinds"; }
   <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
 </head>
 <body>
+  <div style="position:fixed;top:10px;right:10px;background:#3248AD;color:#fff;padding:5px 10px;font-size:12px;border-radius:4px;z-index:9999;">
+  STAGING SITE
+</div>
 <header class="site-header">
   <div class="container nav">
     <a class="nav__brand" href="index.php" aria-label="LevelMinds home">
