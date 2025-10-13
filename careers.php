@@ -4,35 +4,40 @@ include 'partials/header.php';
 require_once __DIR__ . '/includes/mailer.php';
 
 $error = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
-  $name = $_POST['fullname'] ?? '';
-  $email = $_POST['email'] ?? '';
-  $phone = $_POST['phone'] ?? '';
-  $college = $_POST['college'] ?? '';
-  $linkedin = $_POST['linkedin'] ?? '';
-  $plan = $_POST['plan'] ?? '';
+  require_once __DIR__ . '/includes/mailer.php';
 
-  $result = lm_send_dual_mail(
-    'Career Program',
-    $email,
-    $name,
-    [
-      'Full Name' => $name,
-      'Email' => $email,
-      'Phone/WhatsApp' => $phone,
-      'College / University' => $college,
-      'LinkedIn' => $linkedin,
-      'How will you help teachers find opportunities?' => $plan
-    ]
-  );
+  // Get and sanitize form inputs
+  $name = trim($_POST['fullname'] ?? '');
+  $email = trim($_POST['email'] ?? '');
+  $phone = trim($_POST['phone'] ?? '');
+  $college = trim($_POST['college'] ?? '');
+  $linkedin = trim($_POST['linkedin'] ?? '');
+  $plan = trim($_POST['plan'] ?? '');
 
-  if ($result['ok']) {
+  // Prepare fields for email
+  $fields = [
+    'Full Name' => $name,
+    'Email' => $email,
+    'Phone / WhatsApp' => $phone,
+    'College / University' => $college,
+    'LinkedIn Profile' => $linkedin,
+    'How will you help teachers find opportunities?' => $plan
+  ];
+
+  // Send using same working mail function
+  $result = lm_send_dual_mail('Career Program', $email, $name, $fields);
+
+  // Redirect or show error
+  if (!empty($result['ok'])) {
     header('Location: thank-you.php?t=career');
     exit;
   } else {
-    $error = $result['error'] ?? 'Sorry, we could not submit your application right now.';
+    $error = 'Sorry, we could not submit your application right now.';
   }
 }
+
 ?>
 <main>
   <section class="page-hero">
