@@ -19,6 +19,10 @@ if (!isset($pageTitle)) { $pageTitle = "LevelMinds"; }
   STAGING SITE
 </div>
 <header class="site-header">
+  <div class="site-header__background" aria-hidden="true">
+    <span class="site-header__orb site-header__orb--primary"></span>
+    <span class="site-header__orb site-header__orb--secondary"></span>
+  </div>
   <div class="container nav">
     <a class="nav__brand" href="index.php" aria-label="LevelMinds home">
       <img class="nav__logo-img" src="assets/img/logo.svg" alt="LevelMinds logo">
@@ -36,7 +40,12 @@ if (!isset($pageTitle)) { $pageTitle = "LevelMinds"; }
         <a href="contact.php">Contact</a>
       </nav>
       <div class="nav__actions">
-        <a class="btn btn-primary" href="https://lmap.in/login">Login / Sign Up</a>
+        <a class="btn btn-primary" href="https://lmap.in/login">
+          <svg class="icon icon--spark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 3.25 13.62 8l4.88 1.12L14.5 12l.74 5-3.24-2.62L8.76 17l.74-5-3.99-2.88L10.5 8 12 3.25Z" fill="currentColor"/>
+          </svg>
+          <span>Login / Sign Up</span>
+        </a>
       </div>
     </div>
   </div>
