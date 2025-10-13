@@ -6,9 +6,6 @@ require_once __DIR__ . '/includes/mailer.php';
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
- 
-
-  // Get and sanitize form inputs
   $name = trim($_POST['fullname'] ?? '');
   $email = trim($_POST['email'] ?? '');
   $phone = trim($_POST['phone'] ?? '');
@@ -16,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
   $linkedin = trim($_POST['linkedin'] ?? '');
   $plan = trim($_POST['plan'] ?? '');
 
-  // Prepare fields for email
   $fields = [
     'Full Name' => $name,
     'Email' => $email,
@@ -26,10 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
     'How will you help teachers find opportunities?' => $plan
   ];
 
-  // Send using same working mail function
   $result = lm_send_dual_mail('Career Program', $email, $name, $fields);
 
-  // Redirect or show error
   if (!empty($result['ok'])) {
     header('Location: thank-you.php?t=career');
     exit;
@@ -37,58 +31,125 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
     $error = 'Sorry, we could not submit your application right now.';
   }
 }
-
 ?>
 <main>
-  <section class="page-hero">
-    <div class="container split-layout">
-      <div class="stack">
+  <section class="page-hero page-hero--careers surface-parallax">
+    <div class="container careers-hero">
+      <div class="careers-hero__content" data-motion="slide-right">
         <span class="badge">Campus ambassador program</span>
         <h1>Bring LevelMinds to your campus</h1>
         <p class="lead">Help teachers discover new opportunities while gaining leadership experience and building a network across schools.</p>
+        <div class="careers-hero__chips">
+          <div class="careers-chip" data-motion="scale-up">
+            <span class="icon-circle icon-circle--soft">
+              <img src="assets/img/icons/icon-hand-user.svg" alt="Mentor icon" loading="lazy">
+            </span>
+            <div>
+              <strong>Lead micro-programs</strong>
+              <span>Host events, webinars, and discovery circles for teachers.</span>
+            </div>
+          </div>
+          <div class="careers-chip" data-motion="scale-up" data-motion-delay="0.12s">
+            <span class="icon-circle icon-circle--soft">
+              <img src="assets/img/icons/icon-presentation-trend.svg" alt="Growth icon" loading="lazy">
+            </span>
+            <div>
+              <strong>Grow with LevelMinds</strong>
+              <span>Access coaching, certifications, and internships with our team.</span>
+            </div>
+          </div>
+        </div>
         <div class="hero__actions">
           <a class="btn btn-primary" href="#apply">Apply now</a>
           <a class="btn btn-secondary" href="contact.php">Talk to our team</a>
         </div>
       </div>
-      <div class="product-frame product-frame--hero">
-        <img src="assets/img/careers1.png" alt="LevelMinds ambassadors collaborating in a modern workspace">
+      <div class="careers-hero__media" data-motion="slide-left">
+        <div class="careers-hero__art">
+          <img src="assets/img/careers-hero.png" alt="LevelMinds ambassadors collaborating" loading="lazy">
+        </div>
+        <div class="careers-hero__stat" data-motion="scale-up" data-motion-delay="0.18s">
+          <span class="icon-circle icon-circle--soft">
+            <img src="assets/img/icons/icon-briefcase.svg" alt="Briefcase icon" loading="lazy">
+          </span>
+          <div>
+            <strong>200+ campus activities</strong>
+            <p>Across workshops, job clinics, and mentor panels in the last 12 months.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section section--light">
-    <div class="container feature-grid">
-      <article class="card">
-        <h3>What you will do</h3>
-        <ul class="list-check">
-          <li>Host micro sessions, webinars, and meetups on campus</li>
-          <li>Identify teachers and alumni exploring new school roles</li>
-          <li>Share LevelMinds updates across student communities</li>
-        </ul>
-      </article>
-      <article class="card">
-        <h3>Why it matters</h3>
-        <ul class="list-check">
-          <li>Shape how teachers find verified school opportunities</li>
-          <li>Earn leadership certificates and LevelMinds merch</li>
-          <li>Join product workshops with our founding team</li>
-        </ul>
-      </article>
-      <article class="card">
-        <h3>Perks you will love</h3>
-        <ul class="list-check">
-          <li>Letter of recommendation on completion</li>
-          <li>Priority access to internships and events</li>
-          <li>Monthly recognition for standout ambassadors</li>
-        </ul>
-      </article>
+  <section class="section surface-gradient careers-highlights">
+    <div class="container">
+      <div class="section__header center" data-motion="scale-up">
+        <span class="eyebrow">Why ambassadors love the program</span>
+        <h2>Create impact while sharpening your leadership</h2>
+        <p class="lead">You will champion transparent hiring for teachers, gain project experience, and access exclusive sessions with our founding team.</p>
+      </div>
+      <div class="careers-highlights__grid">
+        <article class="value-card" data-motion="slide-right">
+          <span class="icon-circle icon-circle--halo">
+            <img src="assets/img/icons/icon-atom-orbit.svg" alt="Orbit icon" loading="lazy">
+          </span>
+          <h3>Community events</h3>
+          <p>Host meetups, live demos, and guidance circles for teachers exploring new roles.</p>
+        </article>
+        <article class="value-card" data-motion="scale-up" data-motion-delay="0.12s">
+          <span class="icon-circle icon-circle--halo">
+            <img src="assets/img/icons/icon-documents.svg" alt="Documents icon" loading="lazy">
+          </span>
+          <h3>Exclusive learning tracks</h3>
+          <p>Join product jams, leadership labs, and resume clinics with LevelMinds mentors.</p>
+        </article>
+        <article class="value-card" data-motion="slide-left" data-motion-delay="0.24s">
+          <span class="icon-circle icon-circle--halo">
+            <img src="assets/img/icons/icon-shield-check.svg" alt="Shield icon" loading="lazy">
+          </span>
+          <h3>Rewards that matter</h3>
+          <p>Earn certificates, recommendation letters, and priority access to internships.</p>
+        </article>
+      </div>
     </div>
   </section>
 
-  <section class="section" id="apply">
-    <div class="container contact-panels">
-      <div class="card card--raised">
+  <section class="section section--muted surface-parallax careers-steps">
+    <div class="container">
+      <div class="section__header center" data-motion="scale-up">
+        <span class="eyebrow">How it works</span>
+        <h2>Your journey as a LevelMinds ambassador</h2>
+        <p class="lead">We support you with resources, mentorship, and a structured roadmap from onboarding to graduation.</p>
+      </div>
+      <div class="careers-steps__grid">
+        <article class="tour-card" data-motion="slide-right">
+          <span class="icon-circle icon-circle--halo">
+            <img src="assets/img/icons/icon-user-circle.svg" alt="Profile icon" loading="lazy">
+          </span>
+          <h3>Onboarding sprint</h3>
+          <p>Meet the team, explore program playbooks, and set goals for your campus.</p>
+        </article>
+        <article class="tour-card" data-motion="scale-up" data-motion-delay="0.1s">
+          <span class="icon-circle icon-circle--halo">
+            <img src="assets/img/icons/icon-hand-user.svg" alt="Handshake icon" loading="lazy">
+          </span>
+          <h3>Community activation</h3>
+          <p>Run discovery sessions, share opportunities, and gather teacher insights.</p>
+        </article>
+        <article class="tour-card" data-motion="slide-left" data-motion-delay="0.2s">
+          <span class="icon-circle icon-circle--halo">
+            <img src="assets/img/icons/icon-presentation-trend.svg" alt="Presentation icon" loading="lazy">
+          </span>
+          <h3>Impact showcase</h3>
+          <p>Present outcomes to the LevelMinds crew and receive feedback plus recognition.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section careers-apply" id="apply">
+    <div class="container careers-apply__grid">
+      <div class="careers-apply__info" data-motion="slide-right">
         <span class="eyebrow">Application snapshot</span>
         <h2>Apply to become a campus ambassador</h2>
         <p class="lead">Tell us about your campus, communities, and how you plan to support teachers. Our ambassador success team reviews every application and reaches out with next steps.</p>
@@ -97,8 +158,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
           <li>Support from the LevelMinds team</li>
           <li>Opportunities to co-host future programs</li>
         </ul>
+        <div class="careers-apply__note">
+          <span class="icon-circle icon-circle--soft">
+            <img src="assets/img/icons/icon-briefcase.svg" alt="Briefcase icon" loading="lazy">
+          </span>
+          <div>
+            <strong>Need more context?</strong>
+            <p>Write to <a href="mailto:support@levelminds.in">support@levelminds.in</a> and we will share the program guide.</p>
+          </div>
+        </div>
       </div>
-      <div class="card">
+      <div class="careers-apply__form" data-motion="slide-left">
         <?php if ($error): ?>
           <div class="alert error"><?= lm_sanitize($error) ?></div>
         <?php endif; ?>

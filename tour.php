@@ -4,40 +4,145 @@ include 'partials/header.php';
 require_once __DIR__ . '/partials/tour-slider.php';
 ?>
 <main>
-  <section class="page-hero">
-    <div class="container stack">
-      <span class="badge">Product tour</span>
-      <h1>See LevelMinds in action</h1>
-      <p class="lead">Walk through the spaces teachers and school teams share to move from application to offer without friction.</p>
-      <div class="hero__actions">
-        <a class="btn btn-primary" href="contact.php">Request a live demo</a>
-        <a class="btn btn-secondary" href="index.php">Return to home</a>
+  <section class="page-hero page-hero--tour surface-parallax">
+    <div class="container tour-hero">
+      <div class="tour-hero__content" data-motion="slide-right">
+        <span class="badge">Product tour</span>
+        <h1>See LevelMinds in action</h1>
+        <p class="lead">Walk through the shared workspace teachers and school teams use to move from application to offer without friction.</p>
+        <div class="tour-hero__chips">
+          <div class="tour-chip" data-motion="scale-up">
+            <span class="icon-circle icon-circle--soft">
+              <img src="assets/img/icons/icon-documents.svg" alt="Documents icon" loading="lazy">
+            </span>
+            <div>
+              <strong>Unified pipeline</strong>
+              <span>Stages, scorecards, and activity in one view.</span>
+            </div>
+          </div>
+          <div class="tour-chip" data-motion="scale-up" data-motion-delay="0.12s">
+            <span class="icon-circle icon-circle--soft">
+              <img src="assets/img/icons/icon-hand-user.svg" alt="Collaboration icon" loading="lazy">
+            </span>
+            <div>
+              <strong>Collaborative decisions</strong>
+              <span>Structured notes, tagging, and secure sharing.</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero__actions">
+          <a class="btn btn-primary" href="contact.php">Request a live demo</a>
+          <a class="btn btn-secondary" href="index.php">Return to home</a>
+        </div>
+      </div>
+      <div class="tour-hero__media" data-motion="slide-left">
+        <div class="tour-hero__slider">
+          <?= lm_render_tour_slider(); ?>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section section--light">
-    <div class="container split-layout">
-      <?= lm_render_tour_slider(); ?>
-      <div class="card card--raised">
+  <section class="section surface-gradient tour-summary">
+    <div class="container tour-summary__grid">
+      <div class="tour-summary__content" data-motion="slide-right">
         <span class="eyebrow">Pipeline without the guesswork</span>
         <h2>Everything you need to guide hiring decisions</h2>
         <p class="lead">Shortlist, interview, and hire with crisp visibility. Keep notes, documents, and chat in one shared workspace designed for educators.</p>
-        <ul class="list-check">
-          <li>Configurable stages per role</li>
-          <li>Scorecards mapped to teaching skills</li>
-          <li>Team collaboration with activity logs</li>
-        </ul>
+        <div class="feature-list">
+          <div class="feature-list__item">
+            <span class="icon-circle icon-circle--halo">
+              <img src="assets/img/icons/icon-profile-shield.svg" alt="Profile icon" loading="lazy">
+            </span>
+            <div>
+              <h3>Configurable stages</h3>
+              <p>Create flows per role and align every panelist before interviews begin.</p>
+            </div>
+          </div>
+          <div class="feature-list__item">
+            <span class="icon-circle icon-circle--halo">
+              <img src="assets/img/icons/icon-presentation-trend.svg" alt="Analytics icon" loading="lazy">
+            </span>
+            <div>
+              <h3>Scorecards mapped to skills</h3>
+              <p>Evaluate portfolios, lessons, and references side-by-side without leaving the workspace.</p>
+            </div>
+          </div>
+          <div class="feature-list__item">
+            <span class="icon-circle icon-circle--halo">
+              <img src="assets/img/icons/icon-shield-check.svg" alt="Shield icon" loading="lazy">
+            </span>
+            <div>
+              <h3>Activity that keeps everyone aligned</h3>
+              <p>Track conversations, approvals, and next steps across hiring stakeholders in real time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tour-summary__media" data-motion="slide-left">
+        <figure class="tour-summary__stack">
+          <img src="assets/img/tour-1.jpg" alt="LevelMinds candidate overview" loading="lazy">
+          <img src="assets/img/tour-2.jpg" alt="LevelMinds interview scheduling" loading="lazy">
+        </figure>
+        <div class="tour-summary__badge" data-motion="scale-up" data-motion-delay="0.18s">
+          <span class="icon-circle icon-circle--soft">
+            <img src="assets/img/icons/icon-atom-orbit.svg" alt="Orbit icon" loading="lazy">
+          </span>
+          <div>
+            <strong>Live status sync</strong>
+            <p>Automatic reminders and updates for teachers and schools.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section section--muted">
-    <div class="container tab-group" data-tabs>
-      <div class="section__header center">
+  <section class="section section--muted surface-parallax tour-flow">
+    <div class="container">
+      <div class="section__header center" data-motion="scale-up">
         <span class="eyebrow">Built for everyone involved</span>
-        <h2>Choose your journey</h2>
-        <p class="lead">Switch between the school and teacher flow to see how LevelMinds keeps both sides aligned.</p>
+        <h2>Move through every stage with confidence</h2>
+        <p class="lead">LevelMinds blends automation with human insight to keep schools and teachers in sync from discovery to offer.</p>
+      </div>
+      <div class="tour-flow__grid">
+        <article class="tour-card" data-motion="slide-right">
+          <span class="icon-circle icon-circle--halo">
+            <img src="assets/img/icons/icon-documents.svg" alt="Documents icon" loading="lazy">
+          </span>
+          <h3>Launch your workspace</h3>
+          <p>Invite leadership teams, configure stages, and publish openings instantly.</p>
+        </article>
+        <article class="tour-card" data-motion="scale-up" data-motion-delay="0.1s">
+          <span class="icon-circle icon-circle--halo">
+            <img src="assets/img/icons/icon-profile-shield.svg" alt="Profile icon" loading="lazy">
+          </span>
+          <h3>Review with evidence</h3>
+          <p>Compare digital portfolios, credentials, and recommendations side-by-side.</p>
+        </article>
+        <article class="tour-card" data-motion="scale-up" data-motion-delay="0.2s">
+          <span class="icon-circle icon-circle--halo">
+            <img src="assets/img/icons/icon-hand-user.svg" alt="Collaboration icon" loading="lazy">
+          </span>
+          <h3>Collaborate on interviews</h3>
+          <p>Assign panelists, capture structured notes, and keep every conversation connected.</p>
+        </article>
+        <article class="tour-card" data-motion="slide-left" data-motion-delay="0.3s">
+          <span class="icon-circle icon-circle--halo">
+            <img src="assets/img/icons/icon-shield-check.svg" alt="Shield icon" loading="lazy">
+          </span>
+          <h3>Close the loop</h3>
+          <p>Send offers, track onboarding, and document outcomes for future hiring cycles.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tour-tabs">
+    <div class="container tab-group" data-tabs>
+      <div class="section__header center" data-motion="scale-up">
+        <span class="eyebrow">Choose your journey</span>
+        <h2>Switch between teacher and school views</h2>
+        <p class="lead">Explore how LevelMinds keeps stakeholders aligned with clearly defined steps and shared context.</p>
       </div>
       <div class="tab-nav" role="tablist">
         <button type="button" role="tab" aria-selected="true" data-tab-trigger="schools">For schools</button>
@@ -45,19 +150,19 @@ require_once __DIR__ . '/partials/tour-slider.php';
       </div>
       <div id="tab-schools" class="tab-panel is-active" role="tabpanel">
         <ol class="list-steps">
-          <li>
+          <li data-motion="slide-right">
             <h3>Launch your hiring workspace</h3>
             <p>Invite your leadership team, import open roles, and define scorecards rooted in classroom impact.</p>
           </li>
-          <li>
+          <li data-motion="slide-right" data-motion-delay="0.08s">
             <h3>Review with real evidence</h3>
             <p>Compare portfolios, lesson videos, and credentials side by side to shortlist candidates with confidence.</p>
           </li>
-          <li>
+          <li data-motion="slide-right" data-motion-delay="0.16s">
             <h3>Collaborate on interviews</h3>
             <p>Assign panelists, schedule online or on-campus interviews, and capture structured feedback instantly.</p>
           </li>
-          <li>
+          <li data-motion="slide-right" data-motion-delay="0.24s">
             <h3>Close the loop</h3>
             <p>Send offers, share outcomes, and move new hires into onboarding while keeping an audit trail.</p>
           </li>
@@ -65,19 +170,19 @@ require_once __DIR__ . '/partials/tour-slider.php';
       </div>
       <div id="tab-teachers" class="tab-panel" role="tabpanel">
         <ol class="list-steps">
-          <li>
+          <li data-motion="slide-right">
             <h3>Create a standout profile</h3>
             <p>Curate your teaching philosophy, classroom projects, and credentials in a sharable digital resume.</p>
           </li>
-          <li>
+          <li data-motion="slide-right" data-motion-delay="0.08s">
             <h3>Discover the right roles</h3>
             <p>Filter by school type, subject, and preferred location while receiving recommendations aligned to your skills.</p>
           </li>
-          <li>
+          <li data-motion="slide-right" data-motion-delay="0.16s">
             <h3>Track every stage</h3>
             <p>See where you stand across applications with automated updates, reminders, and next-step guidance.</p>
           </li>
-          <li>
+          <li data-motion="slide-right" data-motion-delay="0.24s">
             <h3>Connect directly with schools</h3>
             <p>Chat with hiring teams as soon as you are shortlisted and keep every conversation in one place.</p>
           </li>
@@ -87,7 +192,7 @@ require_once __DIR__ . '/partials/tour-slider.php';
   </section>
 
   <section class="section section--muted">
-    <div class="container cta-banner">
+    <div class="container cta-banner" data-motion="scale-up">
       <div>
         <h2>See how LevelMinds fits your hiring workflow</h2>
         <p class="lead">Share your goals and we will tailor a walkthrough for your school or teacher network.</p>

@@ -65,10 +65,23 @@
 </footer>
 <script>
 (function () {
+  const motionAwareControllers = [];
+  const reducedMotionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let prefersReducedMotion = reducedMotionMedia.matches;
+  const syncMotionControllers = () => {
+    motionAwareControllers.forEach((controller) => {
+      if (typeof controller?.sync === 'function') {
+        controller.sync();
+      }
+    });
+  };
+  reducedMotionMedia.addEventListener('change', (event) => {
+    prefersReducedMotion = event.matches;
+    syncMotionControllers();
+  });
   const header = document.querySelector('.site-header');
   const toggle = document.querySelector('.nav__toggle');
   const menu = document.querySelector('#site-nav');
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (header && toggle && menu) {
     const body = document.body;
     const closeMenu = () => {
