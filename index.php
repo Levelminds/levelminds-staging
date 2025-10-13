@@ -17,15 +17,15 @@ require_once __DIR__ . '/partials/tour-slider.php';
         <dl class="metric-grid">
           <div class="metric metric--on-dark">
             <dt>Partner schools</dt>
-            <dd>120+</dd>
+            <dd>30+</dd>
           </div>
           <div class="metric metric--on-dark">
             <dt>Teacher profiles</dt>
-            <dd>3,500</dd>
+            <dd>50+</dd>
           </div>
           <div class="metric metric--on-dark">
             <dt>Interviews scheduled</dt>
-            <dd>1,800</dd>
+            <dd>10+</dd>
           </div>
         </dl>
       </div>
