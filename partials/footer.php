@@ -65,10 +65,23 @@
 </footer>
 <script>
 (function () {
+  const motionAwareControllers = [];
+  const reducedMotionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let prefersReducedMotion = reducedMotionMedia.matches;
+  const syncMotionControllers = () => {
+    motionAwareControllers.forEach((controller) => {
+      if (typeof controller?.sync === 'function') {
+        controller.sync();
+      }
+    });
+  };
+  reducedMotionMedia.addEventListener('change', (event) => {
+    prefersReducedMotion = event.matches;
+    syncMotionControllers();
+  });
   const header = document.querySelector('.site-header');
   const toggle = document.querySelector('.nav__toggle');
   const menu = document.querySelector('#site-nav');
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (header && toggle && menu) {
     const body = document.body;
     const closeMenu = () => {
@@ -111,33 +124,160 @@
     });
   });
 
-  const animatedElements = Array.from(document.querySelectorAll('[data-animate]'));
-  if (animatedElements.length) {
-    if (prefersReducedMotion) {
-      animatedElements.forEach((el) => {
-        el.classList.add('is-visible');
-        el.style.removeProperty('transition-delay');
-      });
-    } else {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.28, rootMargin: '0px 0px -12%' }
-      );
-      animatedElements.forEach((el, index) => {
-        const delayAttr = el.getAttribute('data-animate-delay');
-        const delay = delayAttr !== null ? Number(delayAttr) : Math.min(index * 70, 420);
-        if (!Number.isNaN(delay)) {
-          el.style.transitionDelay = `${delay}ms`;
+  const motionElements = Array.from(document.querySelectorAll('[data-motion]'));
+  let motionObserver = null;
+  const setupMotion = () => {
+    if (!motionElements.length) {
+      return;
+    }
+    if (motionObserver) {
+      motionObserver.disconnect();
+      motionObserver = null;
+    }
+    motionElements.forEach((element) => {
+      element.classList.add('motion-ready');
+      const delay = element.getAttribute('data-motion-delay');
+      if (delay) {
+        element.style.setProperty('--motion-delay', delay);
+      }
+      if (prefersReducedMotion) {
+        element.classList.add('is-visible');
+      } else if (element.getAttribute('data-motion-repeat') !== 'true') {
+        element.classList.remove('is-visible');
+      }
+    });
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      motionElements.forEach((element) => element.classList.add('is-visible'));
+      return;
+    }
+    motionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          if (entry.target.getAttribute('data-motion-repeat') !== 'true') {
+            motionObserver?.unobserve(entry.target);
+          }
+        } else if (entry.target.getAttribute('data-motion-repeat') === 'true') {
+          entry.target.classList.remove('is-visible');
         }
-        observer.observe(el);
       });
+    }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+    motionElements.forEach((element) => motionObserver?.observe(element));
+  };
+
+  setupMotion();
+  motionAwareControllers.push({ sync: setupMotion });
+
+  const heroSlider = document.querySelector('[data-hero-slider]');
+  if (heroSlider) {
+    const slides = Array.from(heroSlider.querySelectorAll('[data-hero-slide]'));
+    const dots = Array.from(heroSlider.querySelectorAll('[data-hero-dot]'));
+    if (slides.length) {
+      let activeIndex = slides.findIndex((slide) => slide.classList.contains('is-active'));
+      if (activeIndex < 0) {
+        activeIndex = 0;
+        slides[0].classList.add('is-active');
+      }
+      slides.forEach((slide, index) => {
+        if (index !== activeIndex) {
+          slide.classList.remove('is-active', 'is-exiting');
+          slide.setAttribute('hidden', '');
+        } else {
+          slide.removeAttribute('hidden');
+        }
+      });
+
+      const autoAttr = heroSlider.getAttribute('data-auto-interval');
+      const autoInterval = Math.max(Number(autoAttr) || 4600, 3200);
+      let autoTimer = null;
+      const slideTransition = 780;
+
+      const updateDots = (nextIndex) => {
+        dots.forEach((dot, idx) => {
+          const isActive = idx === nextIndex;
+          dot.classList.toggle('is-active', isActive);
+          dot.setAttribute('aria-selected', String(isActive));
+          if (isActive) {
+            dot.setAttribute('aria-current', 'true');
+          } else {
+            dot.removeAttribute('aria-current');
+          }
+        });
+      };
+
+      const stopAuto = () => {
+        if (autoTimer !== null) {
+          clearInterval(autoTimer);
+          autoTimer = null;
+        }
+      };
+
+      const startAuto = () => {
+        if (prefersReducedMotion || slides.length < 2) {
+          return;
+        }
+        stopAuto();
+        autoTimer = window.setInterval(() => {
+          const nextIndex = (activeIndex + 1) % slides.length;
+          activate(nextIndex);
+        }, autoInterval);
+      };
+
+      const scheduleHide = (slide) => {
+        window.setTimeout(() => {
+          slide.classList.remove('is-exiting');
+          slide.setAttribute('hidden', '');
+        }, slideTransition);
+      };
+
+      const activate = (nextIndex, { manual = false } = {}) => {
+        if (nextIndex === activeIndex || nextIndex < 0 || nextIndex >= slides.length) {
+          return;
+        }
+        const currentSlide = slides[activeIndex];
+        const nextSlide = slides[nextIndex];
+        currentSlide.classList.remove('is-active');
+        currentSlide.classList.add('is-exiting');
+        scheduleHide(currentSlide);
+        nextSlide.classList.remove('is-exiting');
+        nextSlide.removeAttribute('hidden');
+        // Force reflow for smooth transition when slide was hidden
+        void nextSlide.offsetWidth;
+        nextSlide.classList.add('is-active');
+        activeIndex = nextIndex;
+        updateDots(activeIndex);
+        if (manual) {
+          startAuto();
+        }
+      };
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          activate(index, { manual: true });
+        });
+        dot.addEventListener('keydown', (event) => {
+          if (event.key === 'ArrowRight' || event.key === 'Right') {
+            event.preventDefault();
+            const nextIndex = (index + 1) % slides.length;
+            dots[nextIndex]?.focus();
+            activate(nextIndex, { manual: true });
+          }
+          if (event.key === 'ArrowLeft' || event.key === 'Left') {
+            event.preventDefault();
+            const prevIndex = (index - 1 + slides.length) % slides.length;
+            dots[prevIndex]?.focus();
+            activate(prevIndex, { manual: true });
+          }
+        });
+      });
+
+      heroSlider.addEventListener('mouseenter', stopAuto);
+      heroSlider.addEventListener('mouseleave', startAuto);
+      heroSlider.addEventListener('focusin', stopAuto);
+      heroSlider.addEventListener('focusout', startAuto);
+
+      updateDots(activeIndex);
+      startAuto();
     }
   }
 

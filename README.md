@@ -53,7 +53,7 @@ Update the credentials for your account inside the corresponding environment ent
 ],
 ```
 
-The repository also contains a ready-to-edit **staging** configuration named `staging_1`:
+The repository also contains ready-to-edit **staging** configurations named `staging_1` and `staging_2`:
 ```php
 'staging_1' => [
   'brand'       => 'LevelMinds (Staging 1)',
@@ -63,6 +63,19 @@ The repository also contains a ready-to-edit **staging** configuration named `st
     'host'     => 'smtp.hostinger.com',
     'auth'     => true,
     'username' => 'staging@levelminds.in',
+    'password' => 'replace-with-real-password',
+    'secure'   => 'ssl',
+    'port'     => 465,
+  ],
+],
+'staging_2' => [
+  'brand'       => 'LevelMinds (Staging 2)',
+  'admin_email' => 'staging2-team@levelminds.in',
+  'from_email'  => 'no-reply@staging2.levelminds.in',
+  'smtp'        => [
+    'host'     => 'smtp.hostinger.com',
+    'auth'     => true,
+    'username' => 'staging2@levelminds.in',
     'password' => 'replace-with-real-password',
     'secure'   => 'ssl',
     'port'     => 465,

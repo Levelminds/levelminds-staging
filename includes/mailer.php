@@ -47,13 +47,35 @@ function lm_send_dual_mail($formType, $userEmail, $userName, $fields) {
     $mail = new PHPMailer(true);
 
     // === SMTP CONFIGURATION ===
+    $smtpConfig = is_array($LM_SMTP_SETTINGS) ? $LM_SMTP_SETTINGS : [];
+
     $mail->isSMTP();
-    $mail->Host       = 'smtp.hostinger.com';
-    $mail->SMTPAuth   = true;
-    $mail->Username   = 'staging@levelminds.in';     // your email
-    $mail->Password   = 'Levelminds@2024';  // <-- replace this
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // SSL
-    $mail->Port       = 465;
+    if (!empty($smtpConfig['host'])) {
+      $mail->Host = $smtpConfig['host'];
+    }
+    $mail->SMTPAuth = (bool)($smtpConfig['auth'] ?? false);
+    if (!empty($smtpConfig['username'])) {
+      $mail->Username = $smtpConfig['username'];
+    }
+    if (array_key_exists('password', $smtpConfig)) {
+      $mail->Password = $smtpConfig['password'];
+    }
+
+    $secure = $smtpConfig['secure'] ?? null;
+    if ($secure === 'tls') {
+      $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    } elseif ($secure === 'ssl' || empty($secure)) {
+      // Default to SSL to match the sample configuration values.
+      $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    } else {
+      $mail->SMTPSecure = $secure;
+    }
+
+    if (!empty($smtpConfig['port'])) {
+      $mail->Port = (int)$smtpConfig['port'];
+    } else {
+      $mail->Port = 465;
+    }
 
     // === USER EMAIL ===
     $mail->setFrom($LM_FROM_EMAIL, $LM_BRAND);
