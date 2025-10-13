@@ -50,7 +50,7 @@ function lm_send_dual_mail($formType, $userEmail, $userName, $fields) {
     $mail->isSMTP();
     $mail->Host       = 'smtp.hostinger.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'support@levelminds.in';     // your email
+    $mail->Username   = 'staging@levelminds.in';     // your email
     $mail->Password   = 'Levelminds@2024';  // <-- replace this
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // SSL
     $mail->Port       = 465;
