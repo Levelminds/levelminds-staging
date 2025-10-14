@@ -72,6 +72,7 @@ AOS.init({
   once: true
 });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" integrity="sha384-AEiw8apYtVBUIQ+vFKQzqv/ja1CPuVc3rroWAtxEvsC0BpvyEukgqS0bkkCm1cWw" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" integrity="sha512-2MoeJ0yDUuRKqGZo4PMBVXgS5aXoaZySUdkGFUTkOcJCIZy9FHn5Vf3L7hIwrKyYVJZZzKzbwQ6vurIWwt8GzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 <script src="assets/js/vanta-init.js"></script>
