@@ -68,6 +68,94 @@
   const motionAwareControllers = [];
   const reducedMotionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
   let prefersReducedMotion = reducedMotionMedia.matches;
+  let motionObserver = null;
+  const motionElements = Array.from(document.querySelectorAll('[data-motion]'));
+  const initMotionObserver = () => {
+    if (!motionElements.length) {
+      document.body.classList.remove('motion-ready');
+      return;
+    }
+    if (motionObserver) {
+      motionObserver.disconnect();
+      motionObserver = null;
+    }
+    if (prefersReducedMotion) {
+      document.body.classList.remove('motion-ready');
+      motionElements.forEach((el) => {
+        el.classList.add('is-visible');
+        el.style.removeProperty('--motion-delay');
+      });
+      return;
+    }
+    document.body.classList.add('motion-ready');
+    motionElements.forEach((el) => {
+      const delay = el.getAttribute('data-motion-delay');
+      if (delay) {
+        el.style.setProperty('--motion-delay', delay);
+      } else {
+        el.style.removeProperty('--motion-delay');
+      }
+      if (!el.hasAttribute('data-motion-once')) {
+        el.classList.remove('is-visible');
+      }
+    });
+    motionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          if (motionObserver) {
+            motionObserver.unobserve(entry.target);
+          }
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -10%' });
+    motionElements.forEach((el) => {
+      if (!el.classList.contains('is-visible')) {
+        motionObserver.observe(el);
+      }
+    });
+  };
+
+  if (motionElements.length) {
+    initMotionObserver();
+    motionAwareControllers.push({
+      sync: () => initMotionObserver()
+    });
+  }
+
+  const parallaxSections = Array.from(document.querySelectorAll('.surface-parallax'));
+  if (parallaxSections.length) {
+    let ticking = false;
+    const applyParallax = () => {
+      ticking = false;
+      if (prefersReducedMotion) {
+        parallaxSections.forEach((section) => {
+          section.style.removeProperty('--parallax-shift-y');
+        });
+        return;
+      }
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
+      parallaxSections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const centerOffset = rect.top + rect.height / 2 - viewportHeight / 2;
+        const progress = Math.max(Math.min(centerOffset / viewportHeight, 1), -1);
+        section.style.setProperty('--parallax-shift-y', (-progress * 12).toFixed(2));
+      });
+    };
+    const requestParallaxFrame = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(applyParallax);
+      }
+    };
+    requestParallaxFrame();
+    window.addEventListener('scroll', requestParallaxFrame, { passive: true });
+    window.addEventListener('resize', requestParallaxFrame);
+    motionAwareControllers.push({
+      sync: () => requestParallaxFrame()
+    });
+  }
+
   const syncMotionControllers = () => {
     motionAwareControllers.forEach((controller) => {
       if (typeof controller?.sync === 'function') {
