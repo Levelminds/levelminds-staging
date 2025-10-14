@@ -4,7 +4,8 @@ include 'partials/header.php';
 require_once __DIR__ . '/partials/tour-slider.php';
 ?>
 <main>
-  <section class="hero hero--home patterned-surface vanta-section" id="vanta-bg">
+  <section class="hero hero--home patterned-surface vanta-host" id="home-hero">
+    <div id="vanta-bg" class="vanta-surface" aria-hidden="true"></div>
     <div class="hero__background" aria-hidden="true">
       <span class="hero__beam hero__beam--one"></span>
       <span class="hero__beam hero__beam--two"></span>
