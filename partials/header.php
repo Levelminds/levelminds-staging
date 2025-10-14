@@ -20,19 +20,15 @@ if (!isset($pageTitle)) { $pageTitle = "LevelMinds"; }
   STAGING SITE
 </div>
 <header class="site-header" data-header>
-  <div class="site-header__background" aria-hidden="true">
-    <span class="site-header__orb site-header__orb--primary"></span>
-    <span class="site-header__orb site-header__orb--secondary"></span>
-  </div>
-  <div class="container nav">
+  <div class="container site-header__inner">
     <a class="nav__brand" href="index.php" aria-label="LevelMinds home">
       <img class="nav__logo-img" src="assets/img/logo.svg" alt="LevelMinds logo">
       <span class="nav__title">LevelMinds</span>
     </a>
-    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation" data-nav-toggle>
       <span></span>
     </button>
-    <div class="nav__menu" id="site-nav" data-nav-menu>
+    <div class="nav__menu" id="site-nav" data-nav-menu aria-hidden="true">
       <nav class="nav__links" aria-label="Primary navigation">
         <a href="index.php">Home</a>
         <a href="team.php">Team</a>
@@ -41,7 +37,7 @@ if (!isset($pageTitle)) { $pageTitle = "LevelMinds"; }
         <a href="contact.php">Contact</a>
       </nav>
       <div class="nav__actions">
-        <a class="btn btn-primary" href="https://lmap.in/login">
+        <a class="btn btn-primary nav__cta" href="https://lmap.in/login">
           <svg class="icon icon--spark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M12 3.25 13.62 8l4.88 1.12L14.5 12l.74 5-3.24-2.62L8.76 17l.74-5-3.99-2.88L10.5 8 12 3.25Z" fill="currentColor"/>
           </svg>
@@ -50,4 +46,5 @@ if (!isset($pageTitle)) { $pageTitle = "LevelMinds"; }
       </div>
     </div>
   </div>
+  <div class="nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
 </header>

@@ -33,7 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
 }
 ?>
 <main>
-  <section class="page-hero page-hero--careers surface-parallax">
+  <section class="page-hero page-hero--careers surface-parallax vanta-host">
+    <div id="careers-vanta" class="vanta-surface" aria-hidden="true"></div>
     <div class="container careers-hero">
       <div class="careers-hero__content" data-aos="fade-right">
         <span class="badge">Campus ambassador program</span>
@@ -157,7 +158,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
   </section>
 
   <section class="section careers-apply" id="apply">
-    <div id="careers-vanta" class="vanta-surface" aria-hidden="true"></div>
     <div class="container careers-apply__grid">
       <div class="careers-apply__info" data-aos="fade-right">
         <span class="eyebrow">Application snapshot</span>

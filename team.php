@@ -1,6 +1,6 @@
 <?php $pageTitle = "Team - LevelMinds"; include 'partials/header.php'; ?>
 <main>
-  <section class="page-hero page-hero--team surface-parallax" id="team-hero">
+  <section class="page-hero page-hero--team surface-parallax vanta-host" id="team-hero">
     <div id="team-vanta" class="vanta-surface" aria-hidden="true"></div>
     <div class="container team-hero">
       <div class="team-hero__intro" data-aos="fade-right">
@@ -28,7 +28,7 @@
           </div>
         </div>
       </div>
-      <div class="team-hero__media" data-motion="slide-left">
+      <div class="team-hero__media" data-aos="fade-left">
         <div class="team-hero__canvas" aria-hidden="true">
           <span class="team-hero__ring"></span>
           <span class="team-hero__node team-hero__node--primary">
