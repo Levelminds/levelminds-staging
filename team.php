@@ -28,8 +28,17 @@
         </div>
       </div>
       <div class="team-hero__media" data-motion="slide-left">
-        <div class="team-hero__media-inner">
-          <img src="assets/img/team-hero.png" alt="LevelMinds team collaborating in a modern workspace" loading="lazy">
+        <div class="team-hero__canvas" aria-hidden="true">
+          <span class="team-hero__ring"></span>
+          <span class="team-hero__node team-hero__node--primary">
+            <img src="assets/img/icons/icon-atom-orbit.svg" alt="" loading="lazy">
+          </span>
+          <span class="team-hero__node team-hero__node--secondary">
+            <img src="assets/img/icons/icon-hand-user.svg" alt="" loading="lazy">
+          </span>
+          <span class="team-hero__node team-hero__node--tertiary">
+            <img src="assets/img/icons/icon-building.svg" alt="" loading="lazy">
+          </span>
         </div>
         <div class="team-hero__stat" data-motion="scale-up" data-motion-delay="0.18s">
           <span class="icon-circle icon-circle--soft">
@@ -114,11 +123,6 @@
                   <path d="M3.25 3.75h9a.75.75 0 0 1 .75.75v9a.75.75 0 0 1-1.28.53l-2.5-2.5-2.72 2.72a.75.75 0 0 1-1.28-.53v-9a.75.75 0 0 1 .75-.75Z" fill="currentColor" />
                 </svg>
               </a>
-              <a class="team-card__social" href="https://www.linkedin.com/in/varun-chamoli-429518ba/" target="_blank" rel="noopener" aria-label="Varun Chamoli on LinkedIn">
-                <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
-                  <path d="M4.98 3.5a2.5 2.5 0 1 1-.02 5 2.5 2.5 0 0 1 .02-5Zm.02 6.25H2.1V21h2.9V9.75ZM9 9.75H6.1V21H9v-6.2c0-1.64.54-2.76 1.89-2.76 1.03 0 1.58.74 1.58 2.76V21h2.9v-6.97c0-3.16-1.68-4.63-3.93-4.63-1.82 0-2.63 1-3.04 1.7h.01V9.75Z" />
-                </svg>
-              </a>
             </div>
           </div>
         </article>
@@ -137,11 +141,6 @@
                   <path d="M3.25 3.75h9a.75.75 0 0 1 .75.75v9a.75.75 0 0 1-1.28.53l-2.5-2.5-2.72 2.72a.75.75 0 0 1-1.28-.53v-9a.75.75 0 0 1 .75-.75Z" fill="currentColor" />
                 </svg>
               </a>
-              <a class="team-card__social" href="https://www.linkedin.com/in/amrit-verma-a3777b202/" target="_blank" rel="noopener" aria-label="Amrit Raj Verma on LinkedIn">
-                <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
-                  <path d="M4.98 3.5a2.5 2.5 0 1 1-.02 5 2.5 2.5 0 0 1 .02-5Zm.02 6.25H2.1V21h2.9V9.75ZM9 9.75H6.1V21H9v-6.2c0-1.64.54-2.76 1.89-2.76 1.03 0 1.58.74 1.58 2.76V21h2.9v-6.97c0-3.16-1.68-4.63-3.93-4.63-1.82 0-2.63 1-3.04 1.7h.01V9.75Z" />
-                </svg>
-              </a>
             </div>
           </div>
         </article>
@@ -158,11 +157,6 @@
                 <span>Connect on LinkedIn</span>
                 <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
                   <path d="M3.25 3.75h9a.75.75 0 0 1 .75.75v9a.75.75 0 0 1-1.28.53l-2.5-2.5-2.72 2.72a.75.75 0 0 1-1.28-.53v-9a.75.75 0 0 1 .75-.75Z" fill="currentColor" />
-                </svg>
-              </a>
-              <a class="team-card__social" href="https://www.linkedin.com/in/knownfreak/" target="_blank" rel="noopener" aria-label="Rahul Sharma on LinkedIn">
-                <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
-                  <path d="M4.98 3.5a2.5 2.5 0 1 1-.02 5 2.5 2.5 0 0 1 .02-5Zm.02 6.25H2.1V21h2.9V9.75ZM9 9.75H6.1V21H9v-6.2c0-1.64.54-2.76 1.89-2.76 1.03 0 1.58.74 1.58 2.76V21h2.9v-6.97c0-3.16-1.68-4.63-3.93-4.63-1.82 0-2.63 1-3.04 1.7h.01V9.75Z" />
                 </svg>
               </a>
             </div>

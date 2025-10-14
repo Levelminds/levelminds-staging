@@ -80,10 +80,38 @@ require_once __DIR__ . '/partials/tour-slider.php';
         </div>
       </div>
       <div class="tour-summary__media" data-motion="slide-left">
-        <figure class="tour-summary__stack">
-          <img src="assets/img/tour-1.jpg" alt="LevelMinds candidate overview" loading="lazy">
-          <img src="assets/img/tour-2.jpg" alt="LevelMinds interview scheduling" loading="lazy">
-        </figure>
+        <div class="tour-summary__panels" aria-hidden="true">
+          <article class="tour-panel">
+            <header>
+              <span class="icon-circle icon-circle--soft">
+                <img src="assets/img/icons/icon-profile-shield.svg" alt="" loading="lazy">
+              </span>
+              <div>
+                <strong>Candidate overview</strong>
+                <span>Stage health and readiness signals.</span>
+              </div>
+            </header>
+            <ul>
+              <li>Role-based scorecards with colour-coded tags</li>
+              <li>Shared notes that follow every decision</li>
+            </ul>
+          </article>
+          <article class="tour-panel tour-panel--secondary">
+            <header>
+              <span class="icon-circle icon-circle--soft">
+                <img src="assets/img/icons/icon-hand-user.svg" alt="" loading="lazy">
+              </span>
+              <div>
+                <strong>Interview scheduler</strong>
+                <span>Coordinate panels without email chains.</span>
+              </div>
+            </header>
+            <ul>
+              <li>Smart availability suggestions for panelists</li>
+              <li>Automatic reminders for teachers and schools</li>
+            </ul>
+          </article>
+        </div>
         <div class="tour-summary__badge" data-motion="scale-up" data-motion-delay="0.18s">
           <span class="icon-circle icon-circle--soft">
             <img src="assets/img/icons/icon-atom-orbit.svg" alt="Orbit icon" loading="lazy">
