@@ -52,6 +52,7 @@
 
 body {
   margin: 0;
+  padding-top: 100px;
   font-family: 'Public Sans', 'Manrope', 'Segoe UI', Tahoma, sans-serif;
   background: linear-gradient(180deg, #f7f9ff 0%, #eef3fb 46%, #ffffff 100%);
   color: var(--text-primary);
@@ -144,7 +145,7 @@ main {
 }
 
 section {
-  padding-block: clamp(3.5rem, 8vw, 5.5rem);
+  padding-block: clamp(4.5rem, 9vw, 6.25rem);
 }
 
 .patterned-surface {
@@ -378,7 +379,7 @@ section {
 }
 
 .icon-circle img {
-  width: clamp(2.6rem, 3.6vw, 3.3rem);
+  width: clamp(3rem, 4vw, 4rem);
   height: auto;
 }
 
@@ -1382,11 +1383,6 @@ section {
   color: #fff;
 }
 
-body.has-fixed-header #home-hero {
-  margin-top: calc(-1 * var(--header-height));
-  padding-top: calc(clamp(4rem, 12vw, 7rem) + var(--header-height));
-}
-
 .hero::after {
   content: "";
   position: absolute;
@@ -1670,6 +1666,14 @@ body.has-fixed-header #home-hero {
   padding-block: clamp(4rem, 10vw, 6rem);
 }
 
+.page-hero.vanta-section {
+  background: linear-gradient(135deg, #3248ad 0%, #3f97d5 100%);
+}
+
+.page-hero.vanta-section.vanta-section--light {
+  background: linear-gradient(135deg, #dbe6ff 0%, #9fbff5 100%);
+}
+
 .page-hero--dark {
   background: linear-gradient(140deg, var(--brand-950), var(--brand-800));
   color: #fff;
@@ -1681,8 +1685,8 @@ body.has-fixed-header #home-hero {
 }
 
 body.has-fixed-header .page-hero:first-of-type {
-  margin-top: calc(-1 * var(--header-height));
-  padding-top: calc(clamp(4rem, 10vw, 6rem) + (var(--header-height) * 0.6));
+  margin-top: 0;
+  padding-top: clamp(4.5rem, 11vw, 7rem);
 }
 
 .page-hero--dark .lead {
@@ -2414,27 +2418,27 @@ body.nav-open {
   }
 }
 
-#team-hero {
+.page-hero--team {
   position: relative;
   overflow: hidden;
   background: linear-gradient(140deg, rgba(37, 99, 235, 0.9), rgba(50, 72, 173, 0.82));
   color: #fff;
 }
 
-#team-hero h1,
-#team-hero h2,
-#team-hero h3,
-#team-hero h4 {
+.page-hero--team h1,
+.page-hero--team h2,
+.page-hero--team h3,
+.page-hero--team h4 {
   color: #fff;
 }
 
-#team-hero .lead,
-#team-hero p,
-#team-hero li {
+.page-hero--team .lead,
+.page-hero--team p,
+.page-hero--team li {
   color: rgba(240, 248, 255, 0.82);
 }
 
-#team-hero .team-hero__intro .badge {
+.page-hero--team .team-hero__intro .badge {
   background: rgba(255, 255, 255, 0.16);
   color: #fff;
 }

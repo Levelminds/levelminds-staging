@@ -4,8 +4,7 @@ include 'partials/header.php';
 require_once __DIR__ . '/partials/tour-slider.php';
 ?>
 <main>
-  <section class="page-hero page-hero--tour surface-parallax vanta-host">
-    <div id="tour-vanta" class="vanta-surface vanta-surface--light" aria-hidden="true"></div>
+  <section class="page-hero page-hero--tour surface-parallax vanta-section vanta-section--light" id="tour-vanta">
     <div class="container tour-hero">
       <div class="tour-hero__content" data-aos="fade-right">
         <span class="badge">Product tour</span>
