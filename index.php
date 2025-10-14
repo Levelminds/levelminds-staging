@@ -4,7 +4,8 @@ include 'partials/header.php';
 require_once __DIR__ . '/partials/tour-slider.php';
 ?>
 <main>
-  <section class="hero hero--home patterned-surface">
+  <section class="hero hero--home patterned-surface vanta-host" id="home-hero">
+    <div id="vanta-bg" class="vanta-surface" aria-hidden="true"></div>
     <div class="hero__background" aria-hidden="true">
       <span class="hero__beam hero__beam--one"></span>
       <span class="hero__beam hero__beam--two"></span>
@@ -12,11 +13,11 @@ require_once __DIR__ . '/partials/tour-slider.php';
       <span class="hero__orb hero__orb--secondary"></span>
     </div>
     <div class="container hero__grid">
-      <div class="hero__content">
+      <div class="hero__content" data-aos="zoom-in">
         <span class="badge badge--light">Skill-first hiring platform</span>
         <h1>Hiring that celebrates great teaching.</h1>
         <p class="lead">LevelMinds connects schools and educators through transparent pipelines, collaborative workflows, and digital profiles that highlight classroom impact.</p>
-        <div class="hero__slider" data-hero-slider data-auto-interval="4600">
+        <div class="hero__slider" data-hero-slider data-auto-interval="4600" data-aos="fade-up" data-aos-delay="150">
           <div class="hero__slides" aria-live="polite">
             <article class="hero-slide is-active" id="hero-slide-1" data-hero-slide role="group" aria-roledescription="slide" aria-label="Orchestrate every touchpoint">
               <h3>Orchestrate every hiring touchpoint</h3>
@@ -49,38 +50,38 @@ require_once __DIR__ . '/partials/tour-slider.php';
             <button type="button" class="hero__slider-dot" data-hero-dot="2" aria-label="Show highlight 3" aria-controls="hero-slide-3" aria-selected="false"></button>
           </div>
         </div>
-        <div class="hero__actions">
+        <div class="hero__actions" data-aos="fade-up" data-aos-delay="200">
           <a class="btn btn-primary" href="https://lmap.in/signup">Sign Up as School</a>
           <a class="btn btn-secondary" href="https://lmap.in/signup">Sign Up as Teacher</a>
         </div>
         <dl class="metric-grid">
-          <div class="metric metric--on-dark" data-tilt>
+          <div class="metric metric--on-dark" data-tilt data-aos="fade-up" data-aos-delay="50">
             <dt>
               <span class="metric__label">
                 <span class="metric__icon" aria-hidden="true">
-                  <img src="assets/img/icons/icon-building.svg" alt="" width="48" height="48" loading="lazy">
+                  <img src="assets/icons/icon-building.svg" alt="" width="48" height="48" loading="lazy">
                 </span>
                 <span>Partner schools</span>
               </span>
             </dt>
             <dd>30+</dd>
           </div>
-          <div class="metric metric--on-dark" data-tilt>
+          <div class="metric metric--on-dark" data-tilt data-aos="fade-up" data-aos-delay="120">
             <dt>
               <span class="metric__label">
                 <span class="metric__icon" aria-hidden="true">
-                  <img src="assets/img/icons/icon-user-circle.svg" alt="" width="48" height="48" loading="lazy">
+                  <img src="assets/icons/icon-user-circle.svg" alt="" width="48" height="48" loading="lazy">
                 </span>
                 <span>Teacher profiles</span>
               </span>
             </dt>
             <dd>50+</dd>
           </div>
-          <div class="metric metric--on-dark" data-tilt>
+          <div class="metric metric--on-dark" data-tilt data-aos="fade-up" data-aos-delay="190">
             <dt>
               <span class="metric__label">
                 <span class="metric__icon" aria-hidden="true">
-                  <img src="assets/img/icons/icon-hand-user.svg" alt="" width="48" height="48" loading="lazy">
+                  <img src="assets/icons/icon-hand-user.svg" alt="" width="48" height="48" loading="lazy">
                 </span>
                 <span>Interviews scheduled</span>
               </span>
@@ -89,14 +90,14 @@ require_once __DIR__ . '/partials/tour-slider.php';
           </div>
         </dl>
       </div>
-      <div class="hero__media">
+      <div class="hero__media" data-aos="fade-left" data-aos-delay="220">
         <div class="media-ring"></div>
-        <article class="hero-slab">
+        <article class="hero-slab" data-aos="zoom-in" data-aos-delay="260">
           <span class="badge">Teacher view</span>
           <h3>Track every application</h3>
           <p>Follow each stage from shortlist to offer with nudges, notes, and reminders.</p>
         </article>
-        <article class="hero-slab hero-slab--dark">
+        <article class="hero-slab hero-slab--dark" data-aos="zoom-in" data-aos-delay="320">
           <span class="badge badge--light">School dashboard</span>
           <h3>Guide every hiring step</h3>
           <p>Insights, reminders, and candidate notes stay together so school teams move quickly with clarity.</p>
@@ -107,15 +108,15 @@ require_once __DIR__ . '/partials/tour-slider.php';
 
   <section class="section section--muted patterned-surface">
     <div class="container">
-      <div class="section__header center">
+      <div class="section__header center" data-aos="fade-up">
         <span class="eyebrow">Why schools and teachers choose us</span>
         <h2>Every workflow matches the classroom reality</h2>
         <p class="lead">Built with school leaders and educators, LevelMinds organises hiring around skills, collaboration, and trust.</p>
       </div>
       <div class="feature-grid">
-        <article class="card card--feature" data-tilt>
+        <article class="card card--feature" data-tilt data-aos="fade-up">
           <span class="card__icon" aria-hidden="true">
-            <img src="assets/img/icons/icon-profile-shield.svg" alt="" width="48" height="48" loading="lazy">
+            <img src="assets/icons/icon-profile-shield.svg" alt="" width="48" height="48" loading="lazy">
           </span>
           <h3>Digital portfolios</h3>
           <p>Showcase lesson plans, classroom videos, and certifications in a profile that travels with every application.</p>
@@ -125,9 +126,9 @@ require_once __DIR__ . '/partials/tour-slider.php';
             <li>Rich media uploads</li>
           </ul>
         </article>
-        <article class="card card--feature" data-tilt>
+        <article class="card card--feature" data-tilt data-aos="fade-up" data-aos-delay="120">
           <span class="card__icon" aria-hidden="true">
-            <img src="assets/img/icons/icon-laptop-trend.svg" alt="" width="48" height="48" loading="lazy">
+            <img src="assets/icons/icon-laptop-trend.svg" alt="" width="48" height="48" loading="lazy">
           </span>
           <h3>School &amp; teacher dashboards</h3>
           <p>Give leadership teams and educators a focused dashboard with the stages, filters, and reminders they need to stay in sync.</p>
@@ -143,37 +144,37 @@ require_once __DIR__ . '/partials/tour-slider.php';
 
   <section class="section">
     <div class="container split-layout">
-      <div>
+      <div data-aos="fade-right">
         <span class="eyebrow">How it works</span>
         <h2>Dashboards that keep every hire on track</h2>
         <p class="lead">Launch a school dashboard, connect teacher profiles, and follow each application with transparent updates.</p>
         <a class="btn btn-primary btn-sm" href="tour.php">Explore the product tour</a>
       </div>
       <ol class="list-steps">
-        <li data-tilt>
+        <li data-tilt data-aos="fade-left" data-aos-delay="40">
           <span class="step-icon" aria-hidden="true">
-            <img src="assets/img/icons/icon-documents.svg" alt="" width="48" height="48" loading="lazy">
+            <img src="assets/icons/icon-documents.svg" alt="" width="48" height="48" loading="lazy">
           </span>
           <h3>Activate your school dashboard</h3>
           <p>Tailor hiring stages, focus areas, and intake forms so your pipeline mirrors the way your school recruits.</p>
         </li>
-        <li data-tilt>
+        <li data-tilt data-aos="fade-left" data-aos-delay="120">
           <span class="step-icon" aria-hidden="true">
-            <img src="assets/img/icons/icon-briefcase.svg" alt="" width="48" height="48" loading="lazy">
+            <img src="assets/icons/icon-briefcase.svg" alt="" width="48" height="48" loading="lazy">
           </span>
           <h3>Share roles with teachers</h3>
           <p>Invite educators to dedicated teacher dashboards where they can submit profiles and track their status.</p>
         </li>
-        <li data-tilt>
+        <li data-tilt data-aos="fade-left" data-aos-delay="200">
           <span class="step-icon" aria-hidden="true">
-            <img src="assets/img/icons/icon-presentation-trend.svg" alt="" width="48" height="48" loading="lazy">
+            <img src="assets/icons/icon-presentation-trend.svg" alt="" width="48" height="48" loading="lazy">
           </span>
           <h3>Review progress in real time</h3>
           <p>Filter candidates, capture evidence, and collaborate on feedback without losing history or context.</p>
         </li>
-        <li data-tilt>
+        <li data-tilt data-aos="fade-left" data-aos-delay="280">
           <span class="step-icon" aria-hidden="true">
-            <img src="assets/img/icons/icon-shield-check.svg" alt="" width="48" height="48" loading="lazy">
+            <img src="assets/icons/icon-shield-check.svg" alt="" width="48" height="48" loading="lazy">
           </span>
           <h3>Hire with full visibility</h3>
           <p>Send offers, trigger reminders, and keep every stakeholder aligned from shortlist to acceptance.</p>
@@ -184,12 +185,12 @@ require_once __DIR__ . '/partials/tour-slider.php';
 
   <section class="section section--light patterned-surface">
     <div class="container stack">
-      <div class="section__header center">
+      <div class="section__header center" data-aos="fade-up">
         <span class="eyebrow">Product spotlight</span>
         <h2>Dashboards built for schools and teachers</h2>
         <p class="lead">See how LevelMinds keeps hiring data visible with dedicated views for leadership and educators.</p>
       </div>
-      <div>
+      <div data-aos="fade-up" data-aos-delay="120">
         <?= lm_render_tour_slider(); ?>
       </div>
     </div>
@@ -197,12 +198,12 @@ require_once __DIR__ . '/partials/tour-slider.php';
 
   <section class="section section--dark">
     <div class="container split-layout">
-      <div class="quote-card">
+      <div class="quote-card" data-aos="fade-right">
         <span class="badge badge--light">Founder insight</span>
         <blockquote>"We designed LevelMinds so that every teacher knows where they stand and every school can hire with confidence."</blockquote>
         <cite>Varun Chamoli, Founder</cite>
       </div>
-      <div class="card card--dark" data-tilt>
+      <div class="card card--dark" data-tilt data-aos="fade-left" data-aos-delay="140">
         <h3>Built for the classroom</h3>
         <p>We partner with forward-thinking schools across India to co-create playbooks that highlight teaching excellence.</p>
         <ul class="list-check">
@@ -215,7 +216,7 @@ require_once __DIR__ . '/partials/tour-slider.php';
   </section>
 
   <section class="section section--muted patterned-surface">
-    <div class="container cta-banner" data-tilt>
+    <div class="container cta-banner" data-tilt data-aos="zoom-in">
       <div class="cta-banner__glow" aria-hidden="true"></div>
       <div>
         <h2>Ready to match great teachers with the right schools?</h2>

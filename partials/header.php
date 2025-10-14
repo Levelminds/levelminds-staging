@@ -12,13 +12,14 @@ if (!isset($pageTitle)) { $pageTitle = "LevelMinds"; }
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-pvOCc7n4/jr2dI+tvwlHGawEq+y3OC/YLXTr4a9L5xRcmk6VwBEm90LkAMPye/+qvOBvybOkHqvCO6L73X6zRg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
 </head>
-<body>
+<body class="has-fixed-header">
   <div style="position:fixed;top:10px;right:10px;background:#3248AD;color:#fff;padding:5px 10px;font-size:12px;border-radius:4px;z-index:9999;">
   STAGING SITE
 </div>
-<header class="site-header">
+<header class="site-header" data-header>
   <div class="site-header__background" aria-hidden="true">
     <span class="site-header__orb site-header__orb--primary"></span>
     <span class="site-header__orb site-header__orb--secondary"></span>
@@ -28,10 +29,10 @@ if (!isset($pageTitle)) { $pageTitle = "LevelMinds"; }
       <img class="nav__logo-img" src="assets/img/logo.svg" alt="LevelMinds logo">
       <span class="nav__title">LevelMinds</span>
     </a>
-    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
       <span></span>
     </button>
-    <div class="nav__menu" id="site-nav">
+    <div class="nav__menu" id="site-nav" data-nav-menu>
       <nav class="nav__links" aria-label="Primary navigation">
         <a href="index.php">Home</a>
         <a href="team.php">Team</a>
