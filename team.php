@@ -1,24 +1,25 @@
 <?php $pageTitle = "Team - LevelMinds"; include 'partials/header.php'; ?>
 <main>
-  <section class="page-hero page-hero--team surface-parallax">
+  <section class="page-hero page-hero--team surface-parallax" id="team-hero">
+    <div id="team-vanta" class="vanta-surface" aria-hidden="true"></div>
     <div class="container team-hero">
-      <div class="team-hero__intro" data-motion="slide-right">
+      <div class="team-hero__intro" data-aos="fade-right">
         <span class="badge badge--light">Team</span>
         <h1>Meet the minds building LevelMinds</h1>
         <p class="lead">Based in Delhi, we are educators, operators, and technologists shaping transparent hiring journeys that honour great teaching.</p>
         <div class="team-hero__highlights">
-          <div class="team-hero__card" data-motion="tilt-up">
+          <div class="team-hero__card" data-aos="fade-up">
             <span class="icon-circle">
-              <img src="assets/img/icons/icon-hand-user.svg" alt="Handshake icon" loading="lazy">
+              <img src="assets/icons/icon-hand-user.svg" alt="Handshake icon" loading="lazy">
             </span>
             <div>
               <h3>Built with educators</h3>
               <p>Co-designed with principals, mentors, and classroom teachers.</p>
             </div>
           </div>
-          <div class="team-hero__card" data-motion="tilt-up" data-motion-delay="0.12s">
+          <div class="team-hero__card" data-aos="fade-up" data-aos-delay="120">
             <span class="icon-circle">
-              <img src="assets/img/icons/icon-building.svg" alt="Building icon" loading="lazy">
+              <img src="assets/icons/icon-building.svg" alt="Building icon" loading="lazy">
             </span>
             <div>
               <h3>Across India</h3>
@@ -40,9 +41,9 @@
             <img src="assets/img/icons/icon-building.svg" alt="" loading="lazy">
           </span>
         </div>
-        <div class="team-hero__stat" data-motion="scale-up" data-motion-delay="0.18s">
+        <div class="team-hero__stat" data-aos="zoom-in" data-aos-delay="180">
           <span class="icon-circle icon-circle--soft">
-            <img src="assets/img/icons/icon-user-circle.svg" alt="Profile icon" loading="lazy">
+            <img src="assets/icons/icon-user-circle.svg" alt="Profile icon" loading="lazy">
           </span>
           <div>
             <strong>Skill-first leadership</strong>
@@ -55,7 +56,7 @@
 
   <section class="section surface-gradient team-story">
     <div class="container team-story__grid">
-      <div class="team-story__content" data-motion="slide-right">
+      <div class="team-story__content" data-aos="fade-right">
         <span class="eyebrow">Our story</span>
         <h2>We started with a classroom problem</h2>
         <p class="lead">LevelMinds began when school leaders and teachers told us that hiring felt complicated and opaque. We built a system that keeps context, trust, and collaboration at the centre of every step.</p>
@@ -65,10 +66,10 @@
           <li>Evidence-driven decisions backed by data</li>
         </ul>
       </div>
-      <div class="team-timeline" data-motion="slide-left">
-        <article class="team-timeline__item" data-motion="scale-up">
+      <div class="team-timeline" data-aos="fade-left">
+        <article class="team-timeline__item" data-aos="zoom-in">
           <span class="team-timeline__icon icon-circle icon-circle--halo">
-            <img src="assets/img/icons/icon-atom-orbit.svg" alt="Spark icon" loading="lazy">
+            <img src="assets/icons/icon-atom-orbit.svg" alt="Spark icon" loading="lazy">
           </span>
           <div>
             <span class="team-timeline__year">2024</span>
@@ -76,9 +77,9 @@
             <p>Varun Chamoli and Amrit Raj Verma partnered with educators to map the hiring frustrations they faced across schools.</p>
           </div>
         </article>
-        <article class="team-timeline__item" data-motion="scale-up" data-motion-delay="0.12s">
+        <article class="team-timeline__item" data-aos="zoom-in" data-aos-delay="120">
           <span class="team-timeline__icon icon-circle icon-circle--halo">
-            <img src="assets/img/icons/icon-documents.svg" alt="Documents icon" loading="lazy">
+            <img src="assets/icons/icon-documents.svg" alt="Documents icon" loading="lazy">
           </span>
           <div>
             <span class="team-timeline__year">2024</span>
@@ -86,9 +87,9 @@
             <p>Together they shadowed school administrators and teachers, defining a transparent workflow that keeps both sides aligned.</p>
           </div>
         </article>
-        <article class="team-timeline__item" data-motion="scale-up" data-motion-delay="0.24s">
+        <article class="team-timeline__item" data-aos="zoom-in" data-aos-delay="240">
           <span class="team-timeline__icon icon-circle icon-circle--halo">
-            <img src="assets/img/icons/icon-laptop-trend.svg" alt="Laptop icon" loading="lazy">
+            <img src="assets/icons/icon-laptop-trend.svg" alt="Laptop icon" loading="lazy">
           </span>
           <div>
             <span class="team-timeline__year">2025</span>
@@ -102,13 +103,13 @@
 
   <section class="section">
     <div class="container">
-      <div class="section__header center" data-motion="scale-up">
+      <div class="section__header center" data-aos="fade-up">
         <span class="eyebrow">Leadership</span>
         <h2>The people growing LevelMinds</h2>
         <p class="lead">We blend school leadership, technology, and experience design to help every teacher find the right classroom.</p>
       </div>
       <div class="team-grid">
-        <article class="team-card" data-motion="tilt-up">
+        <article class="team-card" data-aos="fade-up">
           <figure class="team-card__media">
             <img src="assets/img/varun.jpeg" alt="Varun Chamoli, Founder and CEO" loading="lazy">
           </figure>
@@ -126,7 +127,7 @@
             </div>
           </div>
         </article>
-        <article class="team-card" data-motion="tilt-up" data-motion-delay="0.12s">
+        <article class="team-card" data-aos="fade-up" data-aos-delay="120">
           <figure class="team-card__media">
             <img src="assets/img/amrit.jpeg" alt="Amrit Raj Verma, Co-founder and COO" loading="lazy">
           </figure>
@@ -144,7 +145,7 @@
             </div>
           </div>
         </article>
-        <article class="team-card" data-motion="tilt-up" data-motion-delay="0.24s">
+        <article class="team-card" data-aos="fade-up" data-aos-delay="240">
           <figure class="team-card__media">
             <img src="assets/img/rahul.jpeg" alt="Rahul Sharma, Chief Technology Officer" loading="lazy">
           </figure>
@@ -168,29 +169,29 @@
 
   <section class="section section--muted surface-parallax team-values">
     <div class="container">
-      <div class="section__header center" data-motion="scale-up">
+      <div class="section__header center" data-aos="fade-up">
         <span class="eyebrow">How we work</span>
         <h2>Values guiding our product and partnerships</h2>
         <p class="lead">Every collaboration is grounded in clarity, respect, and the shared goal of elevating teachers.</p>
       </div>
       <div class="team-values__grid">
-        <article class="value-card" data-motion="slide-right">
+        <article class="value-card" data-aos="fade-right">
           <span class="icon-circle icon-circle--halo">
-            <img src="assets/img/icons/icon-profile-shield.svg" alt="Shield icon" loading="lazy">
+            <img src="assets/icons/icon-profile-shield.svg" alt="Shield icon" loading="lazy">
           </span>
           <h3>Trust first</h3>
           <p>We protect candidate data and school insights with enterprise-grade security and transparent controls.</p>
         </article>
-        <article class="value-card" data-motion="scale-up" data-motion-delay="0.12s">
+        <article class="value-card" data-aos="zoom-in" data-aos-delay="120">
           <span class="icon-circle icon-circle--halo">
-            <img src="assets/img/icons/icon-presentation-trend.svg" alt="Presentation icon" loading="lazy">
+            <img src="assets/icons/icon-presentation-trend.svg" alt="Presentation icon" loading="lazy">
           </span>
           <h3>Evidence driven</h3>
           <p>Our workflows blend qualitative notes, scorecards, and outcomes so teams can make confident decisions.</p>
         </article>
-        <article class="value-card" data-motion="slide-left" data-motion-delay="0.24s">
+        <article class="value-card" data-aos="fade-left" data-aos-delay="240">
           <span class="icon-circle icon-circle--halo">
-            <img src="assets/img/icons/icon-briefcase.svg" alt="Briefcase icon" loading="lazy">
+            <img src="assets/icons/icon-briefcase.svg" alt="Briefcase icon" loading="lazy">
           </span>
           <h3>Co-creation</h3>
           <p>We iterate with educators, ambassadors, and partners to ensure LevelMinds evolves with the classroom.</p>
@@ -200,7 +201,7 @@
   </section>
 
   <section class="section section--muted">
-    <div class="container cta-banner" data-motion="scale-up">
+    <div class="container cta-banner" data-aos="zoom-in">
       <div>
         <h2>Work with the team shaping skill-first hiring</h2>
         <p class="lead">Whether you are a school leader or an educator, we would love to co-create the next chapter of LevelMinds with you.</p>

@@ -414,14 +414,17 @@ body:not(.motion-ready) [data-motion] {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--brand-700), var(--brand-600));
+  background: linear-gradient(130deg, #3f97d5 0%, #3248ad 100%);
   color: #fff;
   border: none;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 18px 48px -30px rgba(22, 56, 126, 0.45);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.btn-primary:hover {
-  box-shadow: var(--shadow-md);
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  box-shadow: 0 26px 64px -32px rgba(22, 56, 126, 0.55);
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
@@ -1376,8 +1379,13 @@ body:not(.motion-ready) [data-motion] {
   position: relative;
   overflow: hidden;
   padding-block: clamp(4rem, 12vw, 7rem);
-  background: linear-gradient(135deg, rgba(50, 72, 173, 0.96), rgba(63, 151, 213, 0.92));
+  background: linear-gradient(135deg, rgba(50, 72, 173, 0.9), rgba(63, 151, 213, 0.85));
   color: #fff;
+}
+
+body.has-fixed-header #home-hero {
+  margin-top: calc(-1 * var(--header-height));
+  padding-top: calc(clamp(4rem, 12vw, 7rem) + var(--header-height));
 }
 
 .hero::after {
@@ -1657,6 +1665,8 @@ body:not(.motion-ready) [data-motion] {
 }
 
 .page-hero {
+  position: relative;
+  overflow: hidden;
   background: var(--surface-200);
   padding-block: clamp(4rem, 10vw, 6rem);
 }
@@ -1664,6 +1674,16 @@ body:not(.motion-ready) [data-motion] {
 .page-hero--dark {
   background: linear-gradient(140deg, var(--brand-950), var(--brand-800));
   color: #fff;
+}
+
+.page-hero > .container {
+  position: relative;
+  z-index: 1;
+}
+
+body.has-fixed-header .page-hero:first-of-type {
+  margin-top: calc(-1 * var(--header-height));
+  padding-top: calc(clamp(4rem, 10vw, 6rem) + (var(--header-height) * 0.6));
 }
 
 .page-hero--dark .lead {
@@ -2081,13 +2101,24 @@ textarea {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 900;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(50, 72, 173, 0.08);
+  left: 0;
+  width: 100%;
+  z-index: 980;
+  background: rgba(255, 255, 255, 0);
+  border-bottom: 1px solid transparent;
+  backdrop-filter: blur(0px);
+  box-shadow: none;
+  transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
   overflow: hidden;
+}
+
+.site-header.is-solid {
+  background: rgba(255, 255, 255, 0.97);
+  border-color: rgba(50, 72, 173, 0.12);
+  box-shadow: 0 18px 48px -30px rgba(15, 36, 74, 0.28);
+  backdrop-filter: blur(22px);
 }
 
 .site-header__background {
@@ -2096,6 +2127,12 @@ textarea {
   pointer-events: none;
   z-index: 0;
   background: linear-gradient(120deg, rgba(50, 72, 173, 0.08), rgba(63, 151, 213, 0));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.site-header.is-solid .site-header__background {
+  opacity: 1;
 }
 
 .site-header__orb {
@@ -2127,7 +2164,7 @@ textarea {
   display: flex;
   align-items: center;
   gap: 1.6rem;
-  padding-block: 1.1rem;
+  padding-block: clamp(1rem, 2vw, 1.25rem);
   position: relative;
   z-index: 1;
 }
@@ -2155,12 +2192,30 @@ textarea {
   color: var(--brand-700);
 }
 
+.site-header:not(.is-solid) .nav__brand,
+.site-header:not(.is-solid) .nav__title,
+.site-header:not(.is-solid) .nav__links,
+.site-header:not(.is-solid) .nav__links a {
+  color: #f8faff;
+}
+
+.site-header:not(.is-solid) .nav__links a::after {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(240, 248, 255, 0.6));
+}
+
+.site-header:not(.is-solid) .nav__toggle {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #fff;
+}
+
 .nav__menu {
   margin-left: auto;
   display: flex;
   align-items: center;
   gap: 1.2rem;
   position: relative;
+  z-index: 10;
 }
 
 .nav__links {
@@ -2208,6 +2263,12 @@ textarea {
   transform: scaleX(1);
 }
 
+.site-header:not(.is-solid) .nav__links a:hover,
+.site-header:not(.is-solid) .nav__links a:focus-visible {
+  color: #fff;
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.45);
+}
+
 .nav__actions {
   display: flex;
   align-items: center;
@@ -2227,7 +2288,7 @@ textarea {
   content: "";
   position: absolute;
   inset: -20%;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), transparent 70%);
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.42), transparent 70%);
   opacity: 0;
   transition: opacity 0.35s ease;
   pointer-events: none;
@@ -2364,6 +2425,116 @@ textarea {
   }
 }
 
+#team-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(140deg, rgba(37, 99, 235, 0.9), rgba(50, 72, 173, 0.82));
+  color: #fff;
+}
+
+#team-hero h1,
+#team-hero h2,
+#team-hero h3,
+#team-hero h4 {
+  color: #fff;
+}
+
+#team-hero .lead,
+#team-hero p,
+#team-hero li {
+  color: rgba(240, 248, 255, 0.82);
+}
+
+#team-hero .team-hero__intro .badge {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.careers-apply {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(63, 151, 213, 0.12), rgba(50, 72, 173, 0.18));
+}
+
+#apply > .careers-apply__grid {
+  position: relative;
+  z-index: 1;
+}
+
+.careers-hero__media {
+  display: grid;
+  gap: clamp(1.4rem, 4vw, 2rem);
+  justify-items: center;
+  position: relative;
+}
+
+.careers-hero__art {
+  position: relative;
+  width: clamp(260px, 36vw, 340px);
+  aspect-ratio: 1;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(145deg, rgba(37, 99, 235, 0.12), rgba(50, 72, 173, 0.28));
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.careers-hero__spark {
+  position: absolute;
+  inset: 14%;
+  background: radial-gradient(circle at 30% 30%, rgba(95, 185, 255, 0.38), transparent 70%);
+  filter: blur(18px);
+  opacity: 0.8;
+}
+
+.careers-hero__bubble {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: clamp(82px, 16vw, 118px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(180, 205, 250, 0.42));
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.careers-hero__bubble img {
+  width: clamp(42px, 8vw, 56px);
+  height: auto;
+}
+
+.careers-hero__bubble--primary {
+  top: 16%;
+  left: 18%;
+}
+
+.careers-hero__bubble--secondary {
+  bottom: 12%;
+  right: 14%;
+  width: clamp(72px, 14vw, 102px);
+  background: linear-gradient(145deg, rgba(63, 151, 213, 0.45), rgba(50, 72, 173, 0.32));
+}
+
+.careers-hero__bubble--tertiary {
+  top: 22%;
+  right: 20%;
+  width: clamp(68px, 13vw, 96px);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(214, 226, 255, 0.38));
+}
+
+.careers-hero__art:hover .careers-hero__bubble,
+.careers-hero__art:focus-within .careers-hero__bubble {
+  box-shadow: var(--shadow-md);
+  transform: translate3d(0, -6px, 0);
+}
+
+.careers-hero__stat {
+  position: relative;
+  z-index: 1;
+}
+
 @media (max-width: 1120px) {
   .feature-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2415,7 +2586,7 @@ textarea {
   }
 
   .site-header {
-    position: sticky;
+    position: fixed;
   }
 
   .nav__toggle {
@@ -2511,10 +2682,10 @@ textarea {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .careers-hero,
-  .careers-apply__grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
+.careers-hero,
+.careers-apply__grid {
+  grid-template-columns: minmax(0, 1fr);
+}
 
   .careers-highlights__grid,
   .careers-steps__grid {
@@ -2547,6 +2718,10 @@ textarea {
 @media (max-width: 720px) {
   section {
     padding-block: clamp(3rem, 12vw, 4rem);
+  }
+
+  body.has-fixed-header {
+    --header-height: clamp(4.25rem, 14vw, 4.75rem);
   }
 
   .field.two {
@@ -2607,11 +2782,11 @@ textarea {
     text-align: left;
   }
 
-  .careers-chip,
-  .careers-hero__stat,
-  .careers-apply__note {
-    grid-template-columns: minmax(0, 1fr);
-  }
+.careers-chip,
+.careers-hero__stat,
+.careers-apply__note {
+  grid-template-columns: minmax(0, 1fr);
+}
 
   .contact-info__card,
   .contact-info__item {
@@ -2663,7 +2838,7 @@ textarea {
     scroll-behavior: auto !important;
   }
 
-  [data-motion] {
+  [data-aos] {
     visibility: visible !important;
     transform: none !important;
     transition: none !important;

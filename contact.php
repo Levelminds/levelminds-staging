@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_contact'])) {
 ?>
 <main>
   <section class="page-hero page-hero--contact surface-parallax">
-    <div class="container contact-hero" data-motion="slide-right">
+    <div class="container contact-hero" data-aos="fade-right">
       <span class="badge">Contact</span>
       <h1>We would love to hear from you</h1>
       <p class="lead">Whether you are a school, teacher, or partner, reach out and we will respond within two business days.</p>
@@ -36,10 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_contact'])) {
 
   <section class="section contact-section">
     <div class="container contact-grid">
-      <aside class="contact-info" data-motion="slide-right">
+      <aside class="contact-info" data-aos="fade-right">
         <div class="contact-info__card">
           <span class="icon-circle icon-circle--halo">
-            <img src="assets/img/icons/icon-building.svg" alt="Location icon" loading="lazy">
+            <img src="assets/icons/icon-building.svg" alt="Location icon" loading="lazy">
           </span>
           <div>
             <h2>Visit us</h2>
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_contact'])) {
         <div class="contact-info__list">
           <div class="contact-info__item">
             <span class="icon-circle icon-circle--soft">
-              <img src="assets/img/icons/icon-documents.svg" alt="Email icon" loading="lazy">
+              <img src="assets/icons/icon-documents.svg" alt="Email icon" loading="lazy">
             </span>
             <div>
               <strong>Email</strong>
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_contact'])) {
           </div>
           <div class="contact-info__item">
             <span class="icon-circle icon-circle--soft">
-              <img src="assets/img/icons/icon-hand-user.svg" alt="Phone icon" loading="lazy">
+              <img src="assets/icons/icon-hand-user.svg" alt="Phone icon" loading="lazy">
             </span>
             <div>
               <strong>Phone / WhatsApp</strong>
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_contact'])) {
           <a class="btn btn-secondary" href="mailto:support@levelminds.in">Email the team</a>
         </div>
       </aside>
-      <div class="contact-form" data-motion="slide-left">
+      <div class="contact-form" data-aos="fade-left">
         <div class="contact-form__card">
           <h2>Send us a message</h2>
           <p class="lead">Share as much context as possible so our team can tailor the next steps.</p>

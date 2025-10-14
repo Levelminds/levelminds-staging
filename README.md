@@ -107,3 +107,6 @@ Replace the placeholder values with the credentials provided by your hosting pro
 - All pages share the same header/footer.
 - Color palette uses `#3F97D5` and `#3248AD`.
 - Font is **Public Sans** (loaded from Google Fonts).
+
+## Current status
+- The latest client review confirmed that no further visual refinements are required at this time.

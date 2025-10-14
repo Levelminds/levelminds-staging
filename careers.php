@@ -35,23 +35,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
 <main>
   <section class="page-hero page-hero--careers surface-parallax">
     <div class="container careers-hero">
-      <div class="careers-hero__content" data-motion="slide-right">
+      <div class="careers-hero__content" data-aos="fade-right">
         <span class="badge">Campus ambassador program</span>
         <h1>Bring LevelMinds to your campus</h1>
         <p class="lead">Help teachers discover new opportunities while gaining leadership experience and building a network across schools.</p>
         <div class="careers-hero__chips">
-          <div class="careers-chip" data-motion="scale-up">
+          <div class="careers-chip" data-aos="zoom-in">
             <span class="icon-circle icon-circle--soft">
-              <img src="assets/img/icons/icon-hand-user.svg" alt="Mentor icon" loading="lazy">
+              <img src="assets/icons/icon-hand-user.svg" alt="Mentor icon" loading="lazy">
             </span>
             <div>
               <strong>Lead micro-programs</strong>
               <span>Host events, webinars, and discovery circles for teachers.</span>
             </div>
           </div>
-          <div class="careers-chip" data-motion="scale-up" data-motion-delay="0.12s">
+          <div class="careers-chip" data-aos="zoom-in" data-aos-delay="120">
             <span class="icon-circle icon-circle--soft">
-              <img src="assets/img/icons/icon-presentation-trend.svg" alt="Growth icon" loading="lazy">
+              <img src="assets/icons/icon-presentation-trend.svg" alt="Growth icon" loading="lazy">
             </span>
             <div>
               <strong>Grow with LevelMinds</strong>
@@ -64,13 +64,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
           <a class="btn btn-secondary" href="contact.php">Talk to our team</a>
         </div>
       </div>
-      <div class="careers-hero__media" data-motion="slide-left">
-        <div class="careers-hero__art">
-          <img src="assets/img/careers-hero.png" alt="LevelMinds ambassadors collaborating" loading="lazy">
+      <div class="careers-hero__media" data-aos="fade-left">
+        <div class="careers-hero__art" aria-hidden="true">
+          <span class="careers-hero__spark"></span>
+          <span class="careers-hero__bubble careers-hero__bubble--primary">
+            <img src="assets/icons/icon-atom-orbit.svg" alt="" loading="lazy">
+          </span>
+          <span class="careers-hero__bubble careers-hero__bubble--secondary">
+            <img src="assets/icons/icon-hand-user.svg" alt="" loading="lazy">
+          </span>
+          <span class="careers-hero__bubble careers-hero__bubble--tertiary">
+            <img src="assets/icons/icon-profile-shield.svg" alt="" loading="lazy">
+          </span>
         </div>
-        <div class="careers-hero__stat" data-motion="scale-up" data-motion-delay="0.18s">
+        <div class="careers-hero__stat" data-aos="zoom-in" data-aos-delay="180">
           <span class="icon-circle icon-circle--soft">
-            <img src="assets/img/icons/icon-briefcase.svg" alt="Briefcase icon" loading="lazy">
+            <img src="assets/icons/icon-briefcase.svg" alt="Briefcase icon" loading="lazy">
           </span>
           <div>
             <strong>200+ campus activities</strong>
@@ -83,29 +92,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
 
   <section class="section surface-gradient careers-highlights">
     <div class="container">
-      <div class="section__header center" data-motion="scale-up">
+      <div class="section__header center" data-aos="fade-up">
         <span class="eyebrow">Why ambassadors love the program</span>
         <h2>Create impact while sharpening your leadership</h2>
         <p class="lead">You will champion transparent hiring for teachers, gain project experience, and access exclusive sessions with our founding team.</p>
       </div>
       <div class="careers-highlights__grid">
-        <article class="value-card" data-motion="slide-right">
+        <article class="value-card" data-aos="fade-right">
           <span class="icon-circle icon-circle--halo">
-            <img src="assets/img/icons/icon-atom-orbit.svg" alt="Orbit icon" loading="lazy">
+            <img src="assets/icons/icon-atom-orbit.svg" alt="Orbit icon" loading="lazy">
           </span>
           <h3>Community events</h3>
           <p>Host meetups, live demos, and guidance circles for teachers exploring new roles.</p>
         </article>
-        <article class="value-card" data-motion="scale-up" data-motion-delay="0.12s">
+        <article class="value-card" data-aos="zoom-in" data-aos-delay="120">
           <span class="icon-circle icon-circle--halo">
-            <img src="assets/img/icons/icon-documents.svg" alt="Documents icon" loading="lazy">
+            <img src="assets/icons/icon-documents.svg" alt="Documents icon" loading="lazy">
           </span>
           <h3>Exclusive learning tracks</h3>
           <p>Join product jams, leadership labs, and resume clinics with LevelMinds mentors.</p>
         </article>
-        <article class="value-card" data-motion="slide-left" data-motion-delay="0.24s">
+        <article class="value-card" data-aos="fade-left" data-aos-delay="240">
           <span class="icon-circle icon-circle--halo">
-            <img src="assets/img/icons/icon-shield-check.svg" alt="Shield icon" loading="lazy">
+            <img src="assets/icons/icon-shield-check.svg" alt="Shield icon" loading="lazy">
           </span>
           <h3>Rewards that matter</h3>
           <p>Earn certificates, recommendation letters, and priority access to internships.</p>
@@ -116,29 +125,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
 
   <section class="section section--muted surface-parallax careers-steps">
     <div class="container">
-      <div class="section__header center" data-motion="scale-up">
+      <div class="section__header center" data-aos="fade-up">
         <span class="eyebrow">How it works</span>
         <h2>Your journey as a LevelMinds ambassador</h2>
         <p class="lead">We support you with resources, mentorship, and a structured roadmap from onboarding to graduation.</p>
       </div>
       <div class="careers-steps__grid">
-        <article class="tour-card" data-motion="slide-right">
+        <article class="tour-card" data-aos="fade-right">
           <span class="icon-circle icon-circle--halo">
-            <img src="assets/img/icons/icon-user-circle.svg" alt="Profile icon" loading="lazy">
+            <img src="assets/icons/icon-user-circle.svg" alt="Profile icon" loading="lazy">
           </span>
           <h3>Onboarding sprint</h3>
           <p>Meet the team, explore program playbooks, and set goals for your campus.</p>
         </article>
-        <article class="tour-card" data-motion="scale-up" data-motion-delay="0.1s">
+        <article class="tour-card" data-aos="zoom-in" data-aos-delay="100">
           <span class="icon-circle icon-circle--halo">
-            <img src="assets/img/icons/icon-hand-user.svg" alt="Handshake icon" loading="lazy">
+            <img src="assets/icons/icon-hand-user.svg" alt="Handshake icon" loading="lazy">
           </span>
           <h3>Community activation</h3>
           <p>Run discovery sessions, share opportunities, and gather teacher insights.</p>
         </article>
-        <article class="tour-card" data-motion="slide-left" data-motion-delay="0.2s">
+        <article class="tour-card" data-aos="fade-left" data-aos-delay="200">
           <span class="icon-circle icon-circle--halo">
-            <img src="assets/img/icons/icon-presentation-trend.svg" alt="Presentation icon" loading="lazy">
+            <img src="assets/icons/icon-presentation-trend.svg" alt="Presentation icon" loading="lazy">
           </span>
           <h3>Impact showcase</h3>
           <p>Present outcomes to the LevelMinds crew and receive feedback plus recognition.</p>
@@ -148,8 +157,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
   </section>
 
   <section class="section careers-apply" id="apply">
+    <div id="careers-vanta" class="vanta-surface" aria-hidden="true"></div>
     <div class="container careers-apply__grid">
-      <div class="careers-apply__info" data-motion="slide-right">
+      <div class="careers-apply__info" data-aos="fade-right">
         <span class="eyebrow">Application snapshot</span>
         <h2>Apply to become a campus ambassador</h2>
         <p class="lead">Tell us about your campus, communities, and how you plan to support teachers. Our ambassador success team reviews every application and reaches out with next steps.</p>
@@ -160,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
         </ul>
         <div class="careers-apply__note">
           <span class="icon-circle icon-circle--soft">
-            <img src="assets/img/icons/icon-briefcase.svg" alt="Briefcase icon" loading="lazy">
+            <img src="assets/icons/icon-briefcase.svg" alt="Briefcase icon" loading="lazy">
           </span>
           <div>
             <strong>Need more context?</strong>
@@ -168,7 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lm_career'])) {
           </div>
         </div>
       </div>
-      <div class="careers-apply__form" data-motion="slide-left">
+      <div class="careers-apply__form" data-aos="fade-left">
         <?php if ($error): ?>
           <div class="alert error"><?= lm_sanitize($error) ?></div>
         <?php endif; ?>
