@@ -42,6 +42,19 @@ $LM_ENVIRONMENTS = [
       'port'     => 465,
     ],
   ],
+  'staging_4' => [
+    'brand'       => 'LevelMinds (Staging 4)',
+    'admin_email' => 'staging4-team@levelminds.in',
+    'from_email'  => 'no-reply@staging4.levelminds.in',
+    'smtp'        => [
+      'host'     => 'smtp.hostinger.com',
+      'auth'     => true,
+      'username' => 'staging4@levelminds.in',
+      'password' => 'replace-with-real-password',
+      'secure'   => 'ssl',
+      'port'     => 465,
+    ],
+  ],
 ];
 
 $LM_ENV = getenv('LM_ENV') ?: 'production';

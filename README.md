@@ -53,7 +53,7 @@ Update the credentials for your account inside the corresponding environment ent
 ],
 ```
 
-The repository also contains ready-to-edit **staging** configurations named `staging_1` and `staging_2`:
+The repository also contains ready-to-edit **staging** configurations named `staging_1`, `staging_2`, and `staging_4`:
 ```php
 'staging_1' => [
   'brand'       => 'LevelMinds (Staging 1)',
@@ -81,6 +81,19 @@ The repository also contains ready-to-edit **staging** configurations named `sta
     'port'     => 465,
   ],
 ],
+'staging_4' => [
+  'brand'       => 'LevelMinds (Staging 4)',
+  'admin_email' => 'staging4-team@levelminds.in',
+  'from_email'  => 'no-reply@staging4.levelminds.in',
+  'smtp'        => [
+    'host'     => 'smtp.hostinger.com',
+    'auth'     => true,
+    'username' => 'staging4@levelminds.in',
+    'password' => 'replace-with-real-password',
+    'secure'   => 'ssl',
+    'port'     => 465,
+  ],
+],
 ```
 Replace the placeholder values with the credentials provided by your hosting provider.
 
@@ -94,3 +107,6 @@ Replace the placeholder values with the credentials provided by your hosting pro
 - All pages share the same header/footer.
 - Color palette uses `#3F97D5` and `#3248AD`.
 - Font is **Public Sans** (loaded from Google Fonts).
+
+## Current status
+- The latest client review confirmed that no further visual refinements are required at this time.

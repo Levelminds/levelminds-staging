@@ -63,38 +63,65 @@
     <span>Made for schools and teachers who lead with skills.</span>
   </div>
 </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-ym9G5RWPLXnwF75PwQBGzb62LF8oT+yQUwpsOSJy316KcmBHQYaWV7k/akdUSHhDuH9NJlmKwTCLUBqL6lJ7NQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.AOS) {
+      window.AOS.init({
+        duration: 1000,
+        easing: 'ease-in-out',
+        once: true
+      });
+    }
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" integrity="sha512-2MoeJ0yDUuRKqGZo4PMBVXgS5aXoaZySUdkGFUTkOcJCIZy9FHn5Vf3L7hIwrKyYVJZZzKzbwQ6vurIWwt8GzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+<script src="assets/js/vanta-init.js"></script>
 <script>
 (function () {
-  const motionAwareControllers = [];
   const reducedMotionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
   let prefersReducedMotion = reducedMotionMedia.matches;
-  const syncMotionControllers = () => {
-    motionAwareControllers.forEach((controller) => {
-      if (typeof controller?.sync === 'function') {
-        controller.sync();
+  const motionCallbacks = [];
+
+  const body = document.body;
+  const header = document.querySelector('[data-header]');
+  const navToggle = document.querySelector('[data-nav-toggle]');
+  const navMenu = document.querySelector('[data-nav-menu]');
+
+  const updateHeaderState = () => {
+    if (!header) {
+      return;
+    }
+    const shouldSolid = window.scrollY > 12 || body.classList.contains('nav-open');
+    header.classList.toggle('is-solid', shouldSolid);
+  };
+
+  window.addEventListener('scroll', updateHeaderState, { passive: true });
+  window.addEventListener('load', updateHeaderState);
+  updateHeaderState();
+
+  if (navToggle && navMenu) {
+    const closeMenu = () => {
+      header?.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      body.classList.remove('nav-open');
+      updateHeaderState();
+    };
+    const openMenu = () => {
+      header?.classList.add('is-open');
+      navToggle.setAttribute('aria-expanded', 'true');
+      body.classList.add('nav-open');
+      updateHeaderState();
+    };
+    navToggle.addEventListener('click', () => {
+      if (body.classList.contains('nav-open')) {
+        closeMenu();
+      } else {
+        openMenu();
       }
     });
-  };
-  reducedMotionMedia.addEventListener('change', (event) => {
-    prefersReducedMotion = event.matches;
-    syncMotionControllers();
-  });
-  const header = document.querySelector('.site-header');
-  const toggle = document.querySelector('.nav__toggle');
-  const menu = document.querySelector('#site-nav');
-  if (header && toggle && menu) {
-    const body = document.body;
-    const closeMenu = () => {
-      header.classList.remove('is-open');
-      body.classList.remove('nav-open');
-      toggle.setAttribute('aria-expanded', 'false');
-    };
-    toggle.addEventListener('click', () => {
-      const isOpen = header.classList.toggle('is-open');
-      body.classList.toggle('nav-open', isOpen);
-      toggle.setAttribute('aria-expanded', String(isOpen));
-    });
-    menu.querySelectorAll('a').forEach((link) => {
+    navMenu.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => closeMenu());
     });
     window.addEventListener('resize', () => {
@@ -103,6 +130,39 @@
       }
     });
   }
+
+  const parallaxSections = Array.from(document.querySelectorAll('.surface-parallax'));
+  if (parallaxSections.length) {
+    let ticking = false;
+    const applyParallax = () => {
+      ticking = false;
+      if (prefersReducedMotion) {
+        parallaxSections.forEach((section) => section.style.removeProperty('--parallax-shift-y'));
+        return;
+      }
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
+      parallaxSections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const centerOffset = rect.top + rect.height / 2 - viewportHeight / 2;
+        const progress = Math.max(Math.min(centerOffset / viewportHeight, 1), -1);
+        section.style.setProperty('--parallax-shift-y', (-progress * 12).toFixed(2));
+      });
+    };
+    const requestParallaxFrame = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(() => {
+          ticking = false;
+          applyParallax();
+        });
+      }
+    };
+    requestParallaxFrame();
+    window.addEventListener('scroll', requestParallaxFrame, { passive: true });
+    window.addEventListener('resize', requestParallaxFrame);
+    motionCallbacks.push(() => requestParallaxFrame());
+  }
+
   document.querySelectorAll('[data-tabs]').forEach((group) => {
     const triggers = group.querySelectorAll('[data-tab-trigger]');
     const panels = group.querySelectorAll('.tab-panel');
@@ -113,6 +173,9 @@
       panels.forEach((panel) => {
         panel.classList.toggle('is-active', panel.id === `tab-${id}`);
       });
+      if (window.AOS && typeof window.AOS.refreshHard === 'function') {
+        window.setTimeout(() => window.AOS.refreshHard(), 140);
+      }
     };
     triggers.forEach((trigger) => {
       trigger.addEventListener('click', () => {
@@ -170,6 +233,7 @@
 
       const startAuto = () => {
         if (prefersReducedMotion || slides.length < 2) {
+          stopAuto();
           return;
         }
         stopAuto();
@@ -197,7 +261,6 @@
         scheduleHide(currentSlide);
         nextSlide.classList.remove('is-exiting');
         nextSlide.removeAttribute('hidden');
-        // Force reflow for smooth transition when slide was hidden
         void nextSlide.offsetWidth;
         nextSlide.classList.add('is-active');
         activeIndex = nextIndex;
@@ -232,8 +295,14 @@
       heroSlider.addEventListener('focusin', stopAuto);
       heroSlider.addEventListener('focusout', startAuto);
 
-      updateDots(activeIndex);
-      startAuto();
+      motionCallbacks.push(() => {
+        if (prefersReducedMotion) {
+          stopAuto();
+        } else {
+          startAuto();
+        }
+      });
+      motionCallbacks[motionCallbacks.length - 1]();
     }
   }
 
@@ -246,9 +315,7 @@
       el.style.setProperty('--tilt-scale', '1');
       el.classList.remove('is-hovered');
     };
-    if (prefersReducedMotion) {
-      tiltElements.forEach((el) => resetTilt(el));
-    } else {
+    const enableTilt = () => {
       tiltElements.forEach((el) => {
         const maxTilt = Number(el.getAttribute('data-tilt-max') || '10');
         const handlePointerMove = (event) => {
@@ -282,7 +349,17 @@
         el.addEventListener('pointercancel', handlePointerLeave);
         el.addEventListener('blur', () => resetTilt(el));
       });
+    };
+    if (!prefersReducedMotion) {
+      enableTilt();
+    } else {
+      tiltElements.forEach((el) => resetTilt(el));
     }
+    motionCallbacks.push(() => {
+      if (prefersReducedMotion) {
+        tiltElements.forEach((el) => resetTilt(el));
+      }
+    });
   }
 
   document.querySelectorAll('[data-slider]').forEach((slider) => {
@@ -383,17 +460,25 @@
     slider.addEventListener('mouseleave', maybeResumeAuto);
     slider.addEventListener('focusin', stopAuto);
     slider.addEventListener('focusout', maybeResumeAuto);
-    motionAwareControllers.push({
-      sync: () => {
-        if (prefersReducedMotion) {
-          stopAuto();
-        } else {
-          maybeResumeAuto();
-        }
+
+    motionCallbacks.push(() => {
+      if (prefersReducedMotion) {
+        stopAuto();
+      } else {
+        maybeResumeAuto();
       }
     });
     update();
     startAuto();
+  });
+
+  reducedMotionMedia.addEventListener('change', (event) => {
+    prefersReducedMotion = event.matches;
+    motionCallbacks.forEach((callback) => {
+      if (typeof callback === 'function') {
+        callback();
+      }
+    });
   });
 })();
 </script>
