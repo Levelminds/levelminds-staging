@@ -41,6 +41,7 @@
   --shadow-xs: 0 10px 30px -24px rgba(13, 20, 36, 0.22);
   --transition: all 0.25s ease;
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 *,
@@ -57,6 +58,18 @@ body {
   line-height: 1.6;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+body.has-fixed-header {
+  --header-offset: 6.25rem;
+}
+
+body.has-fixed-header main {
+  padding-top: var(--header-offset);
+}
+
+html {
+  scroll-padding-top: var(--header-offset, 6.25rem);
 }
 
 img {
@@ -2174,8 +2187,9 @@ textarea {
   align-items: center;
   gap: 0.9rem;
   font-weight: 700;
-  color: var(--brand-700);
+  color: var(--text-primary);
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .nav__logo-img {
@@ -2189,7 +2203,32 @@ textarea {
   line-height: 1;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--brand-700);
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.site-header:not(.is-solid) .nav__brand,
+.site-header:not(.is-solid) .nav__title,
+.site-header:not(.is-solid) .nav__links,
+.site-header:not(.is-solid) .nav__links a {
+  color: #f8faff;
+}
+
+.site-header.is-solid .nav__brand,
+.site-header.is-solid .nav__title,
+.site-header.is-solid .nav__links,
+.site-header.is-solid .nav__links a {
+  color: var(--text-primary);
+}
+
+.site-header:not(.is-solid) .nav__links a::after {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(240, 248, 255, 0.6));
+}
+
+.site-header:not(.is-solid) .nav__toggle {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #fff;
 }
 
 .site-header:not(.is-solid) .nav__brand,
