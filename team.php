@@ -28,17 +28,17 @@
           </div>
         </div>
       </div>
-      <div class="team-hero__media" data-aos="fade-left">
+      <div class="team-hero__media" data-motion="slide-left">
         <div class="team-hero__canvas" aria-hidden="true">
           <span class="team-hero__ring"></span>
           <span class="team-hero__node team-hero__node--primary">
-            <img src="assets/icons/icon-atom-orbit.svg" alt="" loading="lazy">
+            <img src="assets/img/icons/icon-atom-orbit.svg" alt="" loading="lazy">
           </span>
           <span class="team-hero__node team-hero__node--secondary">
-            <img src="assets/icons/icon-hand-user.svg" alt="" loading="lazy">
+            <img src="assets/img/icons/icon-hand-user.svg" alt="" loading="lazy">
           </span>
           <span class="team-hero__node team-hero__node--tertiary">
-            <img src="assets/icons/icon-building.svg" alt="" loading="lazy">
+            <img src="assets/img/icons/icon-building.svg" alt="" loading="lazy">
           </span>
         </div>
         <div class="team-hero__stat" data-aos="zoom-in" data-aos-delay="180">

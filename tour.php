@@ -80,12 +80,12 @@ require_once __DIR__ . '/partials/tour-slider.php';
           </div>
         </div>
       </div>
-      <div class="tour-summary__media" data-aos="fade-left">
+      <div class="tour-summary__media" data-motion="slide-left">
         <div class="tour-summary__panels" aria-hidden="true">
           <article class="tour-panel">
             <header>
               <span class="icon-circle icon-circle--soft">
-                <img src="assets/icons/icon-profile-shield.svg" alt="" loading="lazy">
+                <img src="assets/img/icons/icon-profile-shield.svg" alt="" loading="lazy">
               </span>
               <div>
                 <strong>Candidate overview</strong>
@@ -100,7 +100,7 @@ require_once __DIR__ . '/partials/tour-slider.php';
           <article class="tour-panel tour-panel--secondary">
             <header>
               <span class="icon-circle icon-circle--soft">
-                <img src="assets/icons/icon-hand-user.svg" alt="" loading="lazy">
+                <img src="assets/img/icons/icon-hand-user.svg" alt="" loading="lazy">
               </span>
               <div>
                 <strong>Interview scheduler</strong>
@@ -113,7 +113,7 @@ require_once __DIR__ . '/partials/tour-slider.php';
             </ul>
           </article>
         </div>
-        <div class="tour-summary__badge" data-aos="zoom-in" data-aos-delay="180">
+        <div class="tour-summary__badge" data-motion="scale-up" data-motion-delay="0.18s">
           <span class="icon-circle icon-circle--soft">
             <img src="assets/icons/icon-atom-orbit.svg" alt="Orbit icon" loading="lazy">
           </span>
