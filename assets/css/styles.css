@@ -63,7 +63,15 @@ body {
 
 body.has-fixed-header {
   --header-offset: 100px;
-  padding-top: var(--header-offset);
+}
+
+body.has-fixed-header main {
+  padding-top: 0;
+}
+
+main,
+section:first-of-type {
+  padding-top: 100px !important;
 }
 
 html {
@@ -233,31 +241,36 @@ section {
   text-align: center;
 }
 
-.vanta-section {
+.vanta-host {
   position: relative;
-  min-height: 650px;
-  width: 100%;
   overflow: hidden;
-  background: linear-gradient(135deg, #3248ad 0%, #3f97d5 100%);
 }
 
-.vanta-section--light {
-  background: linear-gradient(135deg, #dbe6ff 0%, #9fbff5 100%);
+.vanta-surface {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, #3248ad, #3f97d5);
+  opacity: 0.92;
 }
 
-.vanta-section > * {
+.vanta-surface--light {
+  background: linear-gradient(135deg, #dbe6ff, #9fbff5);
+}
+
+.vanta-host > *:not(.vanta-surface) {
   position: relative;
   z-index: 1;
 }
 
 @media (max-width: 768px) {
-  .vanta-section {
-    min-height: 520px;
-    background: linear-gradient(135deg, #3248ad 0%, #3f97d5 100%);
+  .vanta-surface {
+    display: none;
   }
 
-  .vanta-section--light {
-    background: linear-gradient(135deg, #dbe6ff 0%, #9fbff5 100%);
+  .vanta-host {
+    background: linear-gradient(135deg, rgba(50, 72, 173, 0.94), rgba(63, 151, 213, 0.88));
   }
 }
 
@@ -2096,9 +2109,9 @@ textarea {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 9999;
   background: #ffffff;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
 }
 
@@ -2209,7 +2222,7 @@ textarea {
 .nav__cta:hover,
 .nav__cta:focus-visible {
   transform: translateY(-1px) scale(1.05);
-  box-shadow: 0 18px 46px -18px rgba(50, 72, 173, 0.45), 0 0 22px rgba(63, 151, 213, 0.35);
+  box-shadow: 0 18px 46px -18px rgba(50, 72, 173, 0.45);
 }
 
 .nav__toggle {
@@ -2340,12 +2353,6 @@ body.nav-open {
   .nav__cta {
     width: 100%;
     justify-content: center;
-  }
-}
-
-@media (max-width: 768px) {
-  .site-header {
-    --header-height: 60px;
   }
 }
 

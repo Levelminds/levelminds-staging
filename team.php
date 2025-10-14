@@ -1,6 +1,7 @@
 <?php $pageTitle = "Team - LevelMinds"; include 'partials/header.php'; ?>
 <main>
-  <section class="page-hero page-hero--team surface-parallax vanta-section" id="team-vanta">
+  <section class="page-hero page-hero--team surface-parallax vanta-host" id="team-hero">
+    <div id="team-vanta" class="vanta-surface" aria-hidden="true"></div>
     <div class="container team-hero">
       <div class="team-hero__intro" data-aos="fade-right">
         <span class="badge badge--light">Team</span>

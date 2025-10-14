@@ -9,9 +9,9 @@
     scaleMobile: 1.0,
     color: 0x3f97d5,
     backgroundColor: 0x3248ad,
-    points: 15.0,
+    points: 12.0,
     maxDistance: 25.0,
-    spacing: 18.0,
+    spacing: 16.0,
     showDots: true
   };
 
@@ -42,12 +42,7 @@
       if (!element) {
         return;
       }
-      const options = Object.assign({}, baseOptions, { el: element });
-      if (element.classList.contains('vanta-section--light')) {
-        options.backgroundColor = 0xdbe6ff;
-        options.color = 0x3248ad;
-      }
-      instances.push(window.VANTA.NET(options));
+      instances.push(window.VANTA.NET(Object.assign({}, baseOptions, { el: element })));
     });
   };
 
