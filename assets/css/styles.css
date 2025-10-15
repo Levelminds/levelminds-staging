@@ -54,8 +54,8 @@ body {
   margin: 0;
   padding-top: 100px;
   font-family: 'Public Sans', 'Manrope', 'Segoe UI', Tahoma, sans-serif;
-  background: linear-gradient(180deg, #f7f9ff 0%, #eef3fb 46%, #ffffff 100%);
-  color: var(--text-primary);
+  background-color: #f8fafc;
+  color: #0b2239;
   line-height: 1.6;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -432,13 +432,15 @@ section {
 }
 
 .btn-secondary {
-  background: var(--surface-100);
-  border-color: rgba(37, 99, 235, 0.18);
-  color: var(--brand-700);
+  background: #ffffff;
+  border: 1px solid #3f97d5;
+  color: #3248ad;
 }
 
-.btn-secondary:hover {
-  background: var(--neutral-150);
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background: rgba(63, 151, 213, 0.12);
+  color: #3248ad;
 }
 
 .btn-outline {
