@@ -96,10 +96,14 @@ a:hover {
 
 p {
   margin: 0 0 1rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 li {
+  color: var(--text-primary);
+}
+
+.lead {
   color: var(--text-secondary);
 }
 

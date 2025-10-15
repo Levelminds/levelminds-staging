@@ -15,7 +15,7 @@ if (!isset($pageTitle)) { $pageTitle = "LevelMinds"; }
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" integrity="sha384-9a6QJzi10BGSAdoo6gWQBaIj++ImQxGc1dQc5sKXc5teLoI0lp4rWuIwoMvV7lYd" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" integrity="sha384-Rq9BYwygJyI072QtdgQXl3k5ufADG7n2AFDzy83H8XTur2qxGn8pY/+bexdFv+Fr" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="assets/css/styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-pvOCc7n4/jr2dI+tvwlHGawEq+y3OC/YLXTr4a9L5xRcmk6VwBEm90LkAMPye/+qvOBvybOkHqvCO6L73X6zRg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
 </head>
 <body class="has-fixed-header">
