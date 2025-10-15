@@ -4,8 +4,7 @@ include 'partials/header.php';
 require_once __DIR__ . '/partials/tour-slider.php';
 ?>
 <main>
-  <section class="page-hero page-hero--tour surface-parallax vanta-host">
-    <div id="tour-vanta" class="vanta-surface vanta-surface--light" aria-hidden="true"></div>
+  <section class="page-hero page-hero--tour hero-section surface-parallax vanta-section" id="tour-vanta">
     <div class="container tour-hero">
       <div class="tour-hero__content" data-aos="fade-right">
         <span class="badge">Product tour</span>
@@ -45,7 +44,6 @@ require_once __DIR__ . '/partials/tour-slider.php';
   </section>
 
   <section class="section surface-gradient tour-summary" id="tour-summary">
-    <div id="tour-vanta" class="vanta-surface vanta-surface--light" aria-hidden="true"></div>
     <div class="container tour-summary__grid">
       <div class="tour-summary__content" data-aos="fade-right">
         <span class="eyebrow">Pipeline without the guesswork</span>
@@ -81,7 +79,7 @@ require_once __DIR__ . '/partials/tour-slider.php';
           </div>
         </div>
       </div>
-      <div class="tour-summary__media" data-motion="slide-left">
+      <div class="tour-summary__media" data-aos="fade-left">
         <div class="tour-summary__panels" aria-hidden="true">
           <article class="tour-panel">
             <header>
@@ -114,7 +112,7 @@ require_once __DIR__ . '/partials/tour-slider.php';
             </ul>
           </article>
         </div>
-        <div class="tour-summary__badge" data-motion="scale-up" data-motion-delay="0.18s">
+        <div class="tour-summary__badge" data-aos="zoom-in" data-aos-delay="180">
           <span class="icon-circle icon-circle--soft">
             <img src="assets/icons/icon-atom-orbit.svg" alt="Orbit icon" loading="lazy">
           </span>
