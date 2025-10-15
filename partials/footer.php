@@ -63,62 +63,19 @@
     <span>Made for schools and teachers who lead with skills.</span>
   </div>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-3gJwYp8F5EYh3YOiP+cbX6V+qsSVqS+8CA0nPddOZ1w=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-ym9G5RWPLXnwF75PwQBGzb62LF8oT+yQUwpsOSJy316KcmBHQYaWV7k/akdUSHhDuH9NJlmKwTCLUBqL6lJ7NQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-  (function () {
-    const enableAOS = function () {
-      if (window.AOS && typeof window.AOS.init === 'function') {
-        window.AOS.init({
-          duration: 900,
-          easing: 'ease-in-out',
-          once: true
-        });
-        document.body.classList.add('aos-enabled');
-      } else {
-        document.body.classList.add('aos-disabled');
-      }
-    };
-
-    if (document.readyState === 'complete') {
-      enableAOS();
-    } else {
-      window.addEventListener('load', enableAOS);
-    }
-  })();
+AOS.init({
+  duration: 1000,
+  easing: 'ease-in-out',
+  once: true
+});
 </script>
-<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" integrity="sha384-AEiw8apYtVBUIQ+vFKQzqv/ja1CPuVc3rroWAtxEvsC0BpvyEukgqS0bkkCm1cWw" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" integrity="sha512-2MoeJ0yDUuRKqGZo4PMBVXgS5aXoaZySUdkGFUTkOcJCIZy9FHn5Vf3L7hIwrKyYVJZZzKzbwQ6vurIWwt8GzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 <script src="assets/js/vanta-init.js"></script>
-<script>
-  (function ($) {
-    $(function () {
-      var $tourSlider = $('.tour-slider');
-      if (!$tourSlider.length || typeof $.fn.slick !== 'function') {
-        return;
-      }
-
-      $tourSlider.each(function () {
-        var $instance = $(this);
-        if ($instance.hasClass('slick-initialized')) {
-          return;
-        }
-
-        $instance.slick({
-          autoplay: true,
-          autoplaySpeed: 3000,
-          dots: true,
-          arrows: true,
-          fade: false,
-          pauseOnHover: false,
-          adaptiveHeight: true,
-          prevArrow: '<button type="button" class="slick-prev" aria-label="Previous slide">&#8592;</button>',
-          nextArrow: '<button type="button" class="slick-next" aria-label="Next slide">&#8594;</button>'
-        });
-      });
-    });
-  })(jQuery);
-</script>
 <script>(function () {
   const header = document.querySelector('[data-header]');
   const navToggle = document.querySelector('[data-nav-toggle]');
@@ -130,10 +87,8 @@
     if (!header) {
       return;
     }
-    const shouldCondense = window.scrollY > 24 || body.classList.contains('nav-open');
-    const shouldElevate = window.scrollY > 50 || body.classList.contains('nav-open');
-    header.classList.toggle('is-condensed', shouldCondense);
-    header.classList.toggle('scrolled', shouldElevate);
+    const scrolled = window.scrollY > 24 || body.classList.contains('nav-open');
+    header.classList.toggle('is-condensed', scrolled);
   };
 
   const setNavAria = (expanded) => {
@@ -305,5 +260,3 @@
   updateHeaderState();
 })();
 </script>
-</body>
-</html>
