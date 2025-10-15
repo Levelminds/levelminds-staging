@@ -12,8 +12,8 @@ if (!isset($pageTitle)) { $pageTitle = "LevelMinds"; }
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJ+Y3VCRa14O/2QRd8G8jM7Qp1aijB4Z2sqI=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" integrity="sha384-MUdXdzn1OB/0zkr4yGLnCqZ/n9ut5N7Ifes9RP2d5xKsTtcPiuiwthWczWuiqFOn" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" integrity="sha384-3wRRg17hVCopINZVYCqnfbgXE7aFPSvawmLWNPSiUPVx+HxY+yxb5Cwp5mT7RXPD" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" integrity="sha384-9a6QJzi10BGSAdoo6gWQBaIj++ImQxGc1dQc5sKXc5teLoI0lp4rWuIwoMvV7lYd" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" integrity="sha384-Rq9BYwygJyI072QtdgQXl3k5ufADG7n2AFDzy83H8XTur2qxGn8pY/+bexdFv+Fr" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-pvOCc7n4/jr2dI+tvwlHGawEq+y3OC/YLXTr4a9L5xRcmk6VwBEm90LkAMPye/+qvOBvybOkHqvCO6L73X6zRg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />

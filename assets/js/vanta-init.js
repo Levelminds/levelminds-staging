@@ -8,14 +8,14 @@
     scale: 1.0,
     scaleMobile: 1.0,
     color: 0x3f97d5,
-    backgroundColor: 0x1a1a53,
-    points: 10.0,
-    maxDistance: 20.0,
-    spacing: 15.0,
+    backgroundColor: 0x3248ad,
+    points: 12.0,
+    maxDistance: 25.0,
+    spacing: 16.0,
     showDots: true
   };
 
-  const targets = ['#vanta-bg', '#tour-vanta'];
+  const targets = ['#vanta-bg', '#team-vanta', '#tour-vanta', '#careers-vanta'];
 
   let instances = [];
 
@@ -42,8 +42,7 @@
       if (!element) {
         return;
       }
-      const options = Object.assign({}, baseOptions, { el: element });
-      instances.push(window.VANTA.NET(options));
+      instances.push(window.VANTA.NET(Object.assign({}, baseOptions, { el: element })));
     });
   };
 
