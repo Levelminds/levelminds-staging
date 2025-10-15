@@ -13,42 +13,29 @@ if (!function_exists('lm_render_tour_slider')) {
 
     $slides = $options['slides'] ?? $defaultSlides;
     $showCaptions = array_key_exists('show_captions', $options) ? (bool)$options['show_captions'] : true;
-    $class = trim('product-slider ' . ($options['class'] ?? ''));
-    $count = count($slides);
+    $classAttr = trim('tour-slider ' . ($options['class'] ?? ''));
 
-    if ($count === 0) {
+    if (count($slides) === 0) {
       return '';
     }
 
-    $disableControls = $count <= 1;
-
     ob_start();
     ?>
-    <div class="<?= htmlspecialchars($class, ENT_QUOTES, 'UTF-8') ?>" data-slider>
-      <button class="product-slider__control" type="button" data-slider-prev aria-label="Previous screenshot" <?= $disableControls ? 'disabled' : '' ?>>
-        <span aria-hidden="true">&larr;</span>
-      </button>
-      <div class="product-slider__viewport" aria-live="polite">
-        <div class="product-slider__track">
-          <?php foreach ($slides as $index => $slide): 
-            $isActive = $index === 0 ? ' is-active' : '';
-            $src = htmlspecialchars($slide['src'], ENT_QUOTES, 'UTF-8');
-            $alt = htmlspecialchars($slide['alt'] ?? '', ENT_QUOTES, 'UTF-8');
-            $caption = htmlspecialchars($slide['caption'] ?? '', ENT_QUOTES, 'UTF-8');
-          ?>
-            <figure class="product-slide<?= $isActive ?>">
-              <img src="<?= $src ?>" alt="<?= $alt ?>">
-              <?php if ($showCaptions && $caption !== ''): ?>
-                <figcaption><?= $caption ?></figcaption>
-              <?php endif; ?>
-            </figure>
-          <?php endforeach; ?>
+    <div class="<?= htmlspecialchars($classAttr, ENT_QUOTES, 'UTF-8') ?>" aria-live="polite">
+      <?php foreach ($slides as $slide):
+        $src = htmlspecialchars($slide['src'], ENT_QUOTES, 'UTF-8');
+        $alt = htmlspecialchars($slide['alt'] ?? '', ENT_QUOTES, 'UTF-8');
+        $caption = htmlspecialchars($slide['caption'] ?? '', ENT_QUOTES, 'UTF-8');
+      ?>
+        <div class="tour-slide">
+          <figure>
+            <img src="<?= $src ?>" alt="<?= $alt ?>">
+            <?php if ($showCaptions && $caption !== ''): ?>
+              <figcaption><?= $caption ?></figcaption>
+            <?php endif; ?>
+          </figure>
         </div>
-      </div>
-      <button class="product-slider__control" type="button" data-slider-next aria-label="Next screenshot" <?= $disableControls ? 'disabled' : '' ?>>
-        <span aria-hidden="true">&rarr;</span>
-      </button>
-      <div class="product-slider__dots" role="tablist"></div>
+      <?php endforeach; ?>
     </div>
     <?php
     return ob_get_clean();
